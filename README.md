@@ -9,11 +9,11 @@ Este projeto tem como objetivo desenvolver o **site oficial da Junta de Freguesi
 O site será desenvolvido com **React** e outras tecnologias web modernas, visando criar uma experiência intuitiva, acessível e responsiva para os cidadãos.
 
 Funcionalidades previstas:
-- Página inicial com informações e notícias da freguesia
+- Página inicial com informações e Eventos da freguesia
 - Área institucional com apresentação da Junta e contatos
-- Listagem de serviços disponíveis
-- Galeria de imagens e eventos
-- Formulário de contato direto
+- Listagem de documentos disponíveis
+- Galeria de imagens e patrimonio 
+- Formulário de sugestões
 
 ---
 
