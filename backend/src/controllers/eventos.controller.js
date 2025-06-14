@@ -2,7 +2,7 @@ const eventosService = require('../services/eventos.service');
 
 async function createEvento(req, res) {
     try {
-      const evento = await eventosService.createEvento(req.body);
+      const evento = await eventosService.createEvento(req.body, req.files);
       res.status(201).json(evento);
     } catch (error) {
       console.error("Erro ao criar Evento:", error);

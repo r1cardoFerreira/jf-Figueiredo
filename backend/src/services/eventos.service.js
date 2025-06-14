@@ -1,9 +1,13 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const uploads = require('./media.service');
 
 
-async function createEvento(data) {
-    return await prisma.eventos.create({ data });
+async function createEvento(dados, files) {
+  const evento = await prisma.eventos.create({ data: dados });
+  const dadosID = { id: evento.id, tipoId: 'evento' }
+  await uploads.createMedia(files, dadosID); 
+  return evento;
 }
 
 

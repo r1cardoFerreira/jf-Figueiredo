@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,35 +7,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-//  Tables
-
 model eventos {
   id         Int        @id @default(autoincrement())
-  data_CE    DateTime   @default(now()) @db.Timestamp(6) // data de criação do evento
+  data_CE    DateTime   @default(now()) @db.Timestamp(6)
   titulo_E   String     @db.VarChar(255)
   texto_E    String?    @db.VarChar(255)
   tipo_E     tipo_E     @default(outro)
   data_E     DateTime?
-  img_E      String?    @db.VarChar(255)
   estado     estado     @default(ativo)
-}
 
+  media      media[]    @relation("EventoMedia")
+}
 
 model associacoes {
   id         Int        @id @default(autoincrement())
   nome_A     String     @db.VarChar(255)
   texto_A    String?    @db.VarChar(255)
-  img_A      String?    @db.VarChar(255)
-}
 
+  media      media[]    @relation("AssociacaoMedia")
+}
 
 model documentos {
   id         Int        @id @default(autoincrement())
   data_CE    DateTime   @default(now()) @db.Timestamp(6)
-  doc        String     @db.VarChar(255)
   tipo_D     tipo_D     @default(outro)
+
+  media      media[]    @relation("DocumentoMedia")
 }
 
+model galeria {
+  id         Int        @id @default(autoincrement())
+  label_G    String?    @db.VarChar(255)
+  data_CG    DateTime   @default(now()) @db.Timestamp(6)
+
+  media      media[]    @relation("GaleriaMedia")
+}
 
 model sugestoes_reclamacoes {
   id         Int        @id @default(autoincrement())
@@ -52,18 +52,20 @@ model sugestoes_reclamacoes {
   data_CSR   DateTime   @default(now()) @db.Timestamp(6)
 }
 
-model galeria {
-  id         Int        @id @default(autoincrement())
-  label_G    String?    @db.VarChar(255)
-  img_E      String     @db.VarChar(255)
-  data_CG    DateTime   @default(now()) @db.Timestamp(6)
+model media {
+  id            Int           @id @default(autoincrement())
+  file          String        @db.VarChar(255)
+
+  eventoId      Int?
+  associacaoId  Int?
+  galeriaId     Int?
+  documentoId   Int?
+
+  evento        eventos?      @relation("EventoMedia", fields: [eventoId], references: [id])
+  associacao    associacoes?  @relation("AssociacaoMedia", fields: [associacaoId], references: [id])
+  galeria       galeria?      @relation("GaleriaMedia", fields: [galeriaId], references: [id])
+  documento     documentos?   @relation("DocumentoMedia", fields: [documentoId], references: [id])
 }
-
-
-
-
-
-
 
 enum tipo_E {
   outro
