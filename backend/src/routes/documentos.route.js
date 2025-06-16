@@ -6,8 +6,8 @@ const router = express.Router();
 // const {authenticate} = require('../middlewares/autent.middleware');
 
 
-router.post('/documentos', documentosController.createDocumento);
+router.post('/documentos', upload.array('media', 10), documentosController.createDocumento);
 router.get('/documentos', documentosController.getAllDocumento);
-router.get('/documentos/:tipo', documentosController.getDocumentoTipo);
+router.get('/documentos/tipo/:tipo', documentosController.getDocumentoTipo);
 
 module.exports = router;

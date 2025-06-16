@@ -2,14 +2,32 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 
-async function createAssociacao(data) {
-    return await prisma.associacoes.create({ data });
+async function createAssociacao(dados, files) {
+    const associacao = await prisma.associacoes.create({ 
+        data:{ 
+            nome_A: dados.nome_A,
+            texto_A: dados.texto_A,
+        }
+      });
+    const dadosID = { id: associacao.id, tipo: 'associacao' }
+    await uploads.createMedia(files, dadosID);
+    return associacao;
 }
 
+
+async function getAssociacaoId(id) {
+    return prisma.associacoes.findMany({
+        where: { id: id },
+        include:{media: true}
+    });
+}
 
 async function getAllAssociacao() {
-    return prisma.associacoes.findMany();
+    return prisma.associacoes.findMany({
+        include:{media: true}
+    });
 }
 
 
-module.exports = {createAssociacao, getAllAssociacao};
+
+module.exports = {createAssociacao, getAllAssociacao, getAssociacaoId};

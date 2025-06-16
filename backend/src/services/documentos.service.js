@@ -2,18 +2,28 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 
-async function createDocumento(data) {
-    return await prisma.eventos.create({ data });
+async function createDocumento(dados, files) {
+    const documento = await prisma.documentos.create({ 
+        data: {
+            data_CE: dados.data_CE,
+            tipo_D: dados.tipo_D
+        } 
+    });
+    const dadosID = { id: documento.id, tipo: 'documento' }
+    await uploads.createMedia(files, dadosID); 
+    return documento;
 }
 
-
 async function getAllDocumento() {
-    return prisma.eventos.findMany();
+    return prisma.documentos.findMany({
+        include: {media: true}
+    });
 }
 
 async function getDocumentoTipo(tipo){
-     return prisma.eventos.findMany({
-        where:{tipo_D: tipo}
+     return prisma.documentos.findMany({
+        where:{tipo_D: tipo},
+        include: {media: true}
     });
 }
 

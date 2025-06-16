@@ -1,6 +1,7 @@
 const eventosService = require('../services/eventos.service');
 
 async function createEvento(req, res) {
+    console.log(req.files)
     try {
       const evento = await eventosService.createEvento(req.body, req.files);
       res.status(201).json(evento);
@@ -32,6 +33,20 @@ async function getEventoTipo(req, res) {
   }
 }
 
+async function getEventoId(req, res) {
+  const id = Number(req.params.id);
+  try {
+    const evento = await eventosService.getEventoId(id);
+    if (!evento) {
+      return res.status(404).json({ error: 'Evento não encontrado' });
+    }
+    res.json(evento);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao procurar Evento' });
+  }
+}
+
 async function updateEvento(req, res){
   const id = Number(req.params.id)
   const dadosAtualizados = req.body
@@ -51,4 +66,5 @@ module.exports = {
   getAllEvento,
   getEventoTipo,
   updateEvento,
+  getEventoId,
 };

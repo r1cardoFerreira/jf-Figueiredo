@@ -9,7 +9,8 @@ const router = express.Router();
 
 router.post('/evento',  upload.array('media', 10), eventosController.createEvento);
 router.get('/evento', eventosController.getAllEvento);
-router.get('/evento/:tipo', eventosController.getEventoTipo);
+router.get('/evento/tipo/:tipo', eventosController.getEventoTipo);
+router.get('/evento/:id', eventosController.getEventoId);
 router.patch('/evento/:id', eventosController.updateEvento)
 
 module.exports = router;

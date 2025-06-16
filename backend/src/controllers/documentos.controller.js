@@ -2,7 +2,7 @@ const documentoService = require('../services/documentos.service');
 
 async function createDocumento(req, res) {
     try {
-      const documento = await documentoService.createDocumento(req.body);
+      const documento = await documentoService.createDocumento(req.body, req.files);
       res.status(201).json(documento);
     } catch (error) {
       console.error("Erro ao criar Evento:", error);
