@@ -14,8 +14,10 @@ const app = express();
 
 // const comentarioRoutes = require('./routes/comentario.route');
 const eventoRoutes = require('./src/routes/eventos.route');
-
-
+const associacoesRoutes = require('./src/routes/assosiacoes.route')
+const documentosRoutes = require('./src/routes/documentos.route')
+const galeriaRoutes = require('./src/routes/galeria.route')
+const sugestoes_reclamacoesRoutes = require('./src/routes/sugestoes_reclamacoes.route')
 // Middlewares
 app.use(cors());
 app.use(express.json());
@@ -23,6 +25,10 @@ app.use(express.json());
 // Rotas
 // app.use('/api/autent', autentRoutes);
 app.use('/api/eventos', eventoRoutes);
+app.use('/api/associacoes', associacoesRoutes);
+app.use('/api/documentos', documentosRoutes);
+app.use('/api/galeria', galeriaRoutes)
+app.use('/api/sugestoes_reclamacoes', sugestoes_reclamacoesRoutes)
 
 // Erro global para capturar erros de Multer e outros
 app.use((err, req, res, next) => {

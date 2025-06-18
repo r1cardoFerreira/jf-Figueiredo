@@ -7,10 +7,10 @@ const router = express.Router();
 // const {authenticate} = require('../middlewares/autent.middleware');
 
 
-router.post('/evento',  upload.array('media', 10), eventosController.createEvento);
-router.get('/evento', eventosController.getAllEvento);
-router.get('/evento/tipo/:tipo', eventosController.getEventoTipo);
-router.get('/evento/:id', eventosController.getEventoId);
-router.patch('/evento/:id', eventosController.updateEvento)
+router.post('/',  upload.array('media', 10), eventosController.createEvento);
+router.get('/', eventosController.getAllEvento);
+router.get('/tipo/:tipo', eventosController.getEventoTipo);
+router.get('/:id', eventosController.getEventoId);
+router.patch('/:id', eventosController.updateEvento)
 
 module.exports = router;

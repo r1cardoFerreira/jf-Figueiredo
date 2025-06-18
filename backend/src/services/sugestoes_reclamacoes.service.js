@@ -2,6 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const uploads = require('./media.service');
 const email= require('../utils/mails')
+const path = require('path')
 
 async function createSugestoes_Reclamacoes(dados, files) {
     const sugestoes_reclamacoes = await prisma.sugestoes_reclamacoes.create({ 
@@ -14,12 +15,16 @@ async function createSugestoes_Reclamacoes(dados, files) {
       });
     const dadosID = { id: sugestoes_reclamacoes.id, tipo: 'sugestoes_reclamacoes' }
   
-    const anexos = req.files.map(file =>({
+    const anexos = files.map(file =>({
         filename: file.originalname,
         path: path.join(__dirname, '..', '..', 'uploads', file.filename)
     }));
     
-    await email.enviarEmail(sugestoes_reclamacoes.assunto, sugestoes_reclamacoes.mensagem, anexos) 
+    await email.enviarEmail({
+        subject:sugestoes_reclamacoes.assunto, 
+        text:sugestoes_reclamacoes.mensagem,
+        attachments:anexos
+    }) 
 
     return sugestoes_reclamacoes;
 }
