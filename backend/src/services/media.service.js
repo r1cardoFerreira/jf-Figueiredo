@@ -4,6 +4,9 @@ const prisma = new PrismaClient();
 
 async function createMedia(files, dadosID) {
   const { id, tipo } = dadosID;
+
+  const ficheiros = [];//usa-se no assunto
+
   const tasks = files.map((file) => {
     const data = {
       file: file.filename,

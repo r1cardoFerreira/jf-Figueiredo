@@ -9,13 +9,14 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-async function enviarEmail({ to, subject, text, html }) {
+async function enviarEmail({ subject, text, /*html,*/ attachments }) {
   const info = await transporter.sendMail({
-    from: `"Junta de Freguesia Website" <${process.env.SMTP_USER}>`,
-    to,
+    from: `"Junta de Freguesia Website" <${process.env.EMAIL_USER}>`,
+    to: process.env.EMAIL_DESTINATARIO,
     subject,
     text,
-    html,
+    //html,
+    attachments,
   });
 
   console.log("Email enviado:", info.messageId);

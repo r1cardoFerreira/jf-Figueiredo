@@ -29,7 +29,7 @@ model associacoes {
 
 model documentos {
   id         Int        @id @default(autoincrement())
-  data_CE    DateTime   @default(now()) @db.Timestamp(6)
+  data_CD    DateTime   @default(now()) @db.Timestamp(6)
   tipo_D     tipo_D     @default(outro)
 
   media      media[]    @relation("DocumentoMedia")
@@ -50,6 +50,8 @@ model sugestoes_reclamacoes {
   assunto    String?    @db.VarChar(255)
   mensagem   String?    @db.VarChar(255)
   data_CSR   DateTime   @default(now()) @db.Timestamp(6)
+
+  media      media[]    @relation("SugestoesReclamacoesMedia")     
 }
 
 model media {
@@ -60,11 +62,13 @@ model media {
   associacaoId  Int?
   galeriaId     Int?
   documentoId   Int?
+  sugestoes_reclamacoesId Int?
 
   evento        eventos?      @relation("EventoMedia", fields: [eventoId], references: [id])
   associacao    associacoes?  @relation("AssociacaoMedia", fields: [associacaoId], references: [id])
   galeria       galeria?      @relation("GaleriaMedia", fields: [galeriaId], references: [id])
   documento     documentos?   @relation("DocumentoMedia", fields: [documentoId], references: [id])
+  sugestoes_reclamacoes sugestoes_reclamacoes? @relation("SugestoesReclamacoesMedia", fields: [sugestoes_reclamacoesId], references: [id])
 }
 
 enum tipo_E {

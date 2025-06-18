@@ -1,6 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-
+const uploads = require('./media.service');
 
 async function createAssociacao(dados, files) {
     const associacao = await prisma.associacoes.create({ 

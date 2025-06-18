@@ -1,6 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-
+const uploads = require('./media.service');
 
 async function createGaleria(dados, files) {
     const galeria = await prisma.galeria.create({ 
