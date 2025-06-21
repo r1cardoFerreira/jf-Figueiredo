@@ -31,7 +31,7 @@ async function createSugestoes_Reclamacoes(dados, files) {
 
 async function getAllSugestoes_Reclamacoes() {
     return prisma.sugestoes_reclamacoes.findMany({
-        include:{media: true}
+        include: { media: true }
     });
 }
 
