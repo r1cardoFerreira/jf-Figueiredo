@@ -11,6 +11,6 @@ router.post('/',  upload.array('media', 10), eventosController.createEvento);
 router.get('/', eventosController.getAllEvento);
 router.get('/tipo/:tipo', eventosController.getEventoTipo);
 router.get('/:id', eventosController.getEventoId);
-router.patch('/:id', eventosController.updateEvento)
+router.patch('/:id', upload.array('media', 10), eventosController.updateEvento);
 
 module.exports = router;

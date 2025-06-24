@@ -24,11 +24,33 @@ async function getAllDocumento(req, res) {
 async function getDocumentoTipo(req, res) {
   const tipo = req.params.tipo 
   try{
-    const documentos = await associacaoService.getDocumentoTipo(tipo);
+    const documentos = await documentoService.getDocumentoTipo(tipo);
     res.json(documentos);
   } catch (error) {
     console.error(error);
     res.status(500).json({error: 'Erro ao procurar Documentos' })
+  }
+}
+
+async function deleteAssociacaoId(req, res) {
+  const id = Number(req.params.id) 
+  try {
+    const associacoes = await Service.deleteAssociacaoId(id);
+    res.json(associacoes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao eleiminar Associacoes' });
+  }
+}
+
+async function deleteDocumentoId(req, res) {
+  const id = Number(req.params.id) 
+  try{
+    const documentos = await documentoService.deleteDocumentosId(id);
+    res.json(documentos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({error: 'Erro ao eliminar Documento' })
   }
 }
 
@@ -37,4 +59,5 @@ module.exports = {
   createDocumento,
   getAllDocumento,
   getDocumentoTipo,
+  deleteDocumentoId,
 };

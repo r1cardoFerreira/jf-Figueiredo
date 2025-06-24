@@ -9,5 +9,6 @@ const router = express.Router();
 
 router.post('/', upload.array('media', 10), SRController.createSugestoes_Reclamacoes);
 router.get('/', SRController.getAllSugestoes_Reclamacoes);
+router.delete('/:id', SRController.deleteSugestoes_ReclamacoesId);
 
 module.exports = router;

@@ -27,5 +27,16 @@ async function getDocumentoTipo(tipo){
     });
 }
 
+async function deleteDocumentosId(id) {
+    const resposta = await prisma.documentos.delete({
+        where: { id: id },
+    });
 
-module.exports = { getDocumentoTipo, getAllDocumento, createDocumento};
+    await prisma.media.deleteMany({
+        where: {documentoId: id}
+    })
+
+    return resposta;
+}
+
+module.exports = { getDocumentoTipo, getAllDocumento, createDocumento, deleteDocumentosId};

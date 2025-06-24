@@ -32,8 +32,21 @@ async function getAssociacaoId(req, res) {
   }
 }
 
+async function deleteAssociacaoId(req, res) {
+  const id = Number(req.params.id) 
+  try {
+    const associacoes = await associacaoService.deleteAssociacaoId(id);
+    res.json(associacoes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao eleiminar Associacoes' });
+  }
+}
+
+
 module.exports = {
   createAssociacao,
   getAllAssociacao,
-  getAssociacaoId
+  getAssociacaoId,
+  deleteAssociacaoId
 };

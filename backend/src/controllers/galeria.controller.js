@@ -32,8 +32,20 @@ async function getDelGaleria(req, res) {
   }
 }*/
 
+async function deleteGaleriaId(req, res) {
+  const id = Number(req.params.id) 
+  try {
+    const galeria = await galeriaService.deleteGaleriaId(id);
+    res.json(galeria);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao eliminar elemento na Galeria' });
+  }
+}
+
 module.exports = {
   createGaleria,
   getAllGaleria,
-  //getDelGaleria
+  //getDelGaleria,
+  deleteGaleriaId,
 };

@@ -48,17 +48,24 @@ async function getEventoId(req, res) {
 }
 
 async function updateEvento(req, res){
-  const id = Number(req.params.id)
-  const dadosAtualizados = req.body
-  try{
-    const eventoAtualizado = await eventosService.updateEvento(dadosAtualizados,id);
-    res.json(eventoAtualizado);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({error: 'Erro ao atualizar o Evento' })
-  }
+    const id = Number(req.params.id);
+    
+    if (!req.body || Object.keys(req.body).length === 0) {
+        return res.status(400).json({ 
+            error: 'Nenhum dado fornecido para atualização' 
+        });
+    }
+    
+    const dadosAtualizados = req.body;
+    
+    try {
+        const eventoAtualizado = await eventosService.updateEvento(dadosAtualizados, id , req.files);
+        res.json(eventoAtualizado);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error: 'Erro ao atualizar o Evento'});
+    }
 }
-
 
 
 module.exports = {

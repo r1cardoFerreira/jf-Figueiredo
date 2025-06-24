@@ -35,6 +35,17 @@ async function getAllSugestoes_Reclamacoes() {
     });
 }
 
+async function deleteSugestoes_ReclamacoesId(id) {
+    const resposta = await prisma.sugestoes_reclamacoes.delete({
+        where: { id: id },
+    });
+
+    await prisma.media.deleteMany({
+        where: {sugestoes_reclamacoesId: id}
+    })
+
+    return resposta;
+}
 
 
-module.exports = {getAllSugestoes_Reclamacoes, createSugestoes_Reclamacoes};
+module.exports = {getAllSugestoes_Reclamacoes, createSugestoes_Reclamacoes, deleteSugestoes_ReclamacoesId};

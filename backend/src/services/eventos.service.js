@@ -40,19 +40,20 @@ async function getEventoId(id) {
   });
 }
 
-async function updateEvento(dadosAtualizados, id){
-    const evento = await prisma.eventos.findUnique({
-        where:{id:id}
-    })
-
-    return prisma.eventos.update({
-        where:{id:id},
-        data: { 
-            data_CE: evento.data_CE,
-            ...evento,
-            ...dadosAtualizados,
-        }     
-    })
+async function updateEvento(dadosAtualizados, id, files) {
+    // Atualizar o evento
+    const eventoAtualizado = await prisma.eventos.update({
+        where: { id },
+        data: dadosAtualizados
+    });
+    
+    // Se há arquivos, processar mídia
+    const dadosID = { id: id, tipo: 'evento' }
+    await uploads.createMedia(files, dadosID); 
+    
+    return eventoAtualizado;
 }
+
+
 
 module.exports = { createEvento, getAllEvento, getEventoTipo, updateEvento, getEventoId};

@@ -19,6 +19,17 @@ async function getAllGaleria() {
     });
 }
 
+async function deleteGaleriaId(id) {
+    const resposta = await prisma.galeria.delete({
+        where: { id: id },
+    });
+
+    await prisma.media.deleteMany({
+        where: {galeriaId: id}
+    })
+
+    return resposta;
+}
 
 
-module.exports = {getAllGaleria, createGaleria};
+module.exports = {getAllGaleria, createGaleria, deleteGaleriaId};

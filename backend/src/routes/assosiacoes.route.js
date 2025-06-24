@@ -10,5 +10,6 @@ const router = express.Router();
 router.post('/', upload.array('media', 10), associacoesController.createAssociacao);
 router.get('/', associacoesController.getAllAssociacao);
 router.get('/:id', associacoesController.getAssociacaoId);
+router.delete('/:id', associacoesController.deleteAssociacaoId);
 
 module.exports = router;

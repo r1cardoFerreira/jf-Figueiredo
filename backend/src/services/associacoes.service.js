@@ -28,6 +28,18 @@ async function getAllAssociacao() {
     });
 }
 
+async function deleteAssociacaoId(id) {
+    const resposta = await prisma.associacoes.delete({
+        where: { id: id },
+    });
+
+    await prisma.media.deleteMany({
+        where: {associacaoId: id}
+    })
+
+    return resposta;
+}
 
 
-module.exports = {createAssociacao, getAllAssociacao, getAssociacaoId};
+
+module.exports = {createAssociacao, getAllAssociacao, getAssociacaoId, deleteAssociacaoId};

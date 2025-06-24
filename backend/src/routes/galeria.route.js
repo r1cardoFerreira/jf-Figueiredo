@@ -9,5 +9,6 @@ const router = express.Router();
 
 router.post('/', upload.array('media', 10), galeriaController.createGaleria);
 router.get('/', galeriaController.getAllGaleria);
+router.delete('/:id', galeriaController.deleteGaleriaId);
 
 module.exports = router;

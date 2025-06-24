@@ -10,5 +10,6 @@ const router = express.Router();
 router.post('/', upload.array('media', 10), documentosController.createDocumento);
 router.get('/', documentosController.getAllDocumento);
 router.get('/tipo/:tipo', documentosController.getDocumentoTipo);
+router.delete('/:id', documentosController.deleteDocumentoId);
 
 module.exports = router;

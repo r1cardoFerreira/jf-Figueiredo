@@ -21,7 +21,19 @@ async function getAllSugestoes_Reclamacoes(req, res) {
   }
 }
 
+async function deleteSugestoes_ReclamacoesId(req, res) {
+  const id = Number(req.params.id) 
+  try {
+    const sugestoes_reclamacoes = await SRService.deleteSugestoes_ReclamacoesId(id);
+    res.json(sugestoes_reclamacoes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao eliminar a Sugestao/Reclamacao' });
+  }
+}
+
 module.exports = {
   createSugestoes_Reclamacoes,
   getAllSugestoes_Reclamacoes,
+  deleteSugestoes_ReclamacoesId,
 };
