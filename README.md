@@ -28,9 +28,6 @@ my-project/
 │   ├── assets/
 │   ├── components/
 │   ├── pages/
-│   ├── services/
-│   ├── hooks/
-│   ├── contexts/
 │   ├── styles/
 │   ├── App.jsx
 │   └── main.jsx
