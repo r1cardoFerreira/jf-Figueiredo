@@ -1,0 +1,19 @@
+.footer-container{
+    background-color: #121ca7;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    width: 100%;
+}
+.footer-title{
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+.footer-text{
+    font-size:18px;
+    color: #fff;
+}
+.map{
+    height: 370px !important;
+}
