@@ -8,7 +8,7 @@ const Sugestao =() =>{
         <div>
             <Navbar/>
         <div className="sugestao-container">
-            <h2 className="sugestao-tittle">Sugestao</h2>
+            <h2 className="sugestao-tittle">Sugestoes</h2>
             <form>
                 <span>Nome*</span>
                 <input type="text" className="sugestao-input"></input>

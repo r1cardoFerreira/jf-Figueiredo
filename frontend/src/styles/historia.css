@@ -1,0 +1,33 @@
+.historia-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 80%;
+  margin: 40px auto;
+  height: 400px;
+}
+.historia-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* centraliza e preenche */
+  object-position: center; 
+}
+.historia-titulo {
+  background-color: #121ca7;
+  color: #ffffff;
+  padding: 48px 24px;
+  width: 80%;
+  text-align: left;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: -70px; /* sobrepor um pouco a imagem */
+}
+
+.historia-texto {
+    width: 80%;
+  margin-top: 24px;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: justify;
+}

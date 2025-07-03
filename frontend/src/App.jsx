@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import Footer from "./components/footer";
 import Heraldica from "./pages/heraldica";
 import Sugestao from "./pages/sugestao";
+import Historia from "./pages/historia";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/navbar" element={<Navbar />} />
         <Route path="/heraldica" element={<Heraldica/>}/>
         <Route path="/form" element={<Sugestao/>}/>
+        <Route path="/historia" element={<Historia/>}/>
       </Routes>
     </BrowserRouter>
   );
