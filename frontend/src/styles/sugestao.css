@@ -1,0 +1,38 @@
+.sugestao-container{
+    width:60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.sugestao-tittle{
+    font-size: 2.3em;
+    font-weight: 400;
+}
+.sugestao-input{
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 16px;
+    font-size: 1.5em;
+    resize: none;
+}
+.msg{
+    height: 180px;
+}
+.sugestao-button{
+    background-color: #fff;
+    color: #121ca7;
+    border-radius: 15px;
+    border:#121ca7 solid 2px ;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    font-weight: 700;
+}
+.sugestao-button:hover{
+    background-color: #121ca7;
+    color: #fff;
+    transition: all 0.2s;
+    cursor: pointer;
+}
