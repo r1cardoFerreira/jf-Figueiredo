@@ -2,6 +2,7 @@ html{
     font-family: 'poppins';
     margin: 0;
     padding: 0;
+    background-color: transparent;
 }
 body{
     margin: 0px !important;

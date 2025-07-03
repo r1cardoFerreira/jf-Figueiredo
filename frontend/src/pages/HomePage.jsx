@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 import imgIgreja from "../../public/Igreja_de_Figueiredo.jpg"
 import imgCasa from "../../public/House_in_Figueiredo.jpg"
 import "../styles/homepage.css"
@@ -30,7 +31,9 @@ return(
     <section id="Eventos">
       <h1 className="IdTittle">Eventos</h1>
     </section>
+    <Footer/>
 </div>
+
 );
 };
 

@@ -1,0 +1,45 @@
+.heraldica-container{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    align-self: center;
+    position: relative;
+    display: flex ;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.heraldica-item{
+    flex: 0 0 calc(40% - 8px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+@media (max-width:900px) {
+    .heraldica-item{
+        flex: 0 0 100%;
+        padding: 20px
+}
+}
+
+.heraldica-tittle{
+    font-weight: bold;
+    text-decoration: underline #121ca7 2px;
+    font-size: 24px;
+    text-align: center;
+}
+.heraldica-brasao{
+    width: 60%;
+    align-self: center;
+}
+.heraldica-subtittle{
+    font-size: large;
+    text-align: left !important;
+    color: #121ca7;
+    width: 100%;
+}
+.heraldica-text{
+    text-align: justify;
+    font-size: medium;
+}
