@@ -3,32 +3,40 @@ const prisma = new PrismaClient();
 
 
 async function createMedia(files, dadosID) {
-
   const { id, tipo } = dadosID;
 
-  async function createSingle(files)
-  {
-       const tasks = files.map((file) => {
-        const data = {
-          file: file.filename,
-          [tipo + 'Id']: id,
-        };
-        return prisma.media.create({ data });
-      });
+  
+  if (!files || files.length === 0) {
+    return [];
   }
 
- if(Array.isArray(files))
- {
-  const file = files
-  await createSingle(files)
- }
- else{
-     // const ficheiros = [];//usa-se no assunto
-    await createSingle(files) 
-  }
+  const tasks = files.map((file) => {
+    const data = {
+      file: file.filename,
+      [tipo + 'Id']: id,
+    };
+    return prisma.media.create({ data });
+  });
 
-  await Promise.all(tasks);
+  return await Promise.all(tasks);
 }
 
 
-module.exports = { createMedia};
+async function createSingleMedia(file, dadosID) {
+  const { id, tipo } = dadosID;
+
+  if (!file) {
+    return null;
+  }
+
+  const data = {
+    file: file.filename,
+    [tipo + 'Id']: id,
+  };
+
+  return await prisma.media.create({ data });
+}
+
+
+
+module.exports = { createMedia, createSingleMedia};

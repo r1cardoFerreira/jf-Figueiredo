@@ -10,7 +10,7 @@ async function createAssociacao(dados, file) {
         }
       });
     const dadosID = { id: associacao.id, tipo: 'associacao' }
-    await uploads.createMedia(file, dadosID);
+    await uploads.createSingleMedia(file, dadosID);
     return associacao;
 }
 
