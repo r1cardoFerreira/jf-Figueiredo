@@ -24,7 +24,7 @@ model associacoes {
   nome_A     String     @db.VarChar(255)
   texto_A    String?    @db.VarChar(255)
 
-  media      media[]    @relation("AssociacaoMedia")
+  media      String     @db.VarChar(255)   
 }
 
 model documentos {
@@ -33,6 +33,18 @@ model documentos {
   tipo_D     tipo_D     @default(outro)
 
   media      media[]    @relation("DocumentoMedia")
+}
+
+model Locais {
+  id          Int       @id @default(autoincrement())
+  nome_L      String    @db.VarChar(255)
+  texto_L     String?    @db.VarChar(255)
+  latitude    Float?
+  longitude   Float?
+  tipo_L      tipo_L    @default(outro)
+  estado      estado     @default(ativo)
+
+  media      media[]    @relation("LocaisMedia")
 }
 
 model galeria {
@@ -51,7 +63,7 @@ model sugestoes_reclamacoes {
   mensagem   String?    @db.VarChar(255)
   data_CSR   DateTime   @default(now()) @db.Timestamp(6)
 
-  media      media[]    @relation("SugestoesReclamacoesMedia")     
+  media      media[]   @relation("SugestoesReclamacoesMedia")     
 }
 
 model media {
@@ -67,8 +79,16 @@ model media {
   evento        eventos?      @relation("EventoMedia", fields: [eventoId], references: [id])
   associacao    associacoes?  @relation("AssociacaoMedia", fields: [associacaoId], references: [id])
   galeria       galeria?      @relation("GaleriaMedia", fields: [galeriaId], references: [id])
+  local         local?        @relation("LocalMedia", fields: [localId], references: [id])
   documento     documentos?   @relation("DocumentoMedia", fields: [documentoId], references: [id])
   sugestoes_reclamacoes sugestoes_reclamacoes? @relation("SugestoesReclamacoesMedia", fields: [sugestoes_reclamacoesId], references: [id])
+}
+
+model Admin {
+  id           Int        @id @default(autoincrement())
+  email        String     @unique
+  password     String
+  createdAt    DateTime   @default(now())
 }
 
 enum tipo_E {
@@ -79,14 +99,22 @@ enum tipo_E {
 }
 
 enum tipo_D {
-  Atas
-  Plano_de_Atividades
-  Avisos
-  Editais
-  Regulamentos
-  Relatorios_de_contas
+  atas
+  plano_de_atividades
+  avisos
+  editais
+  regulamentos
+  relatorios_de_contas
   outro
 }
+
+enum tipo_L {
+  patrimonio
+  estabelecimento
+  outro
+}
+
+
 
 enum estado {
   ativo

@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const uploads = require('./media.service');
 
-async function createAssociacao(dados, files) {
+async function createAssociacao(dados, file) {
     const associacao = await prisma.associacoes.create({ 
         data:{ 
             nome_A: dados.nome_A,
@@ -10,7 +10,7 @@ async function createAssociacao(dados, files) {
         }
       });
     const dadosID = { id: associacao.id, tipo: 'associacao' }
-    await uploads.createMedia(files, dadosID);
+    await uploads.createMedia(file, dadosID);
     return associacao;
 }
 

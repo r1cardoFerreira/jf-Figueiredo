@@ -2,7 +2,7 @@ const associacaoService = require('../services/associacoes.service');
 
 async function createAssociacao(req, res) {
     try {
-      const associacao = await associacaoService.createAssociacao(req.body, req.files);
+      const associacao = await associacaoService.createAssociacao(req.body, req.file);
       res.status(201).json(associacao);
     } catch (error) {
       console.error("Erro ao criar Evento:", error);
