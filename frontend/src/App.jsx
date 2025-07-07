@@ -4,10 +4,8 @@ import HomePage from "./pages/HomePage";
 import Footer from "./components/footer";
 import Heraldica from "./pages/heraldica";
 import Sugestao from "./pages/sugestao";
-<<<<<<< HEAD
 import Historia from "./pages/historia";
-=======
->>>>>>> fad56f919b020db9804d1ad38405d2728cfd241e
+import Sugestao from "./pages/sugestao";
 
 function App() {
   return (
@@ -17,10 +15,8 @@ function App() {
         <Route path="/navbar" element={<Navbar />} />
         <Route path="/heraldica" element={<Heraldica/>}/>
         <Route path="/form" element={<Sugestao/>}/>
-<<<<<<< HEAD
         <Route path="/historia" element={<Historia/>}/>
-=======
->>>>>>> fad56f919b020db9804d1ad38405d2728cfd241e
+        <Route path="/Sugestao" element={<Sugestao/>}/>
       </Routes>
     </BrowserRouter>
   );
