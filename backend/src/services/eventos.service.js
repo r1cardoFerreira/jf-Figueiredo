@@ -55,6 +55,18 @@ async function updateEvento(dadosAtualizados, id, files) {
     return eventoAtualizado;
 }
 
+async function deleteEventoId(id) {
+    const resposta = await prisma.eventos.delete({
+        where: { id: id },
+    });
+
+    await prisma.media.deleteMany({
+        where: {eventoId: id}
+    })
+
+    return resposta;
+}
 
 
-module.exports = { createEvento, getAllEvento, getEventoTipo, updateEvento, getEventoId};
+
+module.exports = { createEvento, getAllEvento, getEventoTipo, updateEvento, getEventoId, deleteEventoId};
