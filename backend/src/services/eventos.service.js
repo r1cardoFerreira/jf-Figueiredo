@@ -47,9 +47,10 @@ async function updateEvento(dadosAtualizados, id, files) {
         data: dadosAtualizados
     });
     
-    // Se há arquivos, processar mídia
-    const dadosID = { id: id, tipo: 'evento' }
+    if (files && files.length > 0) {
+    const dadosID = { id: id, tipo: 'evento' };
     await uploads.createMedia(files, dadosID); 
+    }
     
     return eventoAtualizado;
 }
