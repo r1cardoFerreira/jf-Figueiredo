@@ -1,6 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-const cron = require('node-cron');
+
 const {deleteEventoId, updateEvento} = require('./eventos.service');
 const {deleteSugestoes_ReclamacoesId} = require('./sugestoes_reclamacoes.service');
 const {deleteDocumentosId} = require('./documentos.service');
@@ -86,29 +86,8 @@ async function delDocumentos()
 }
 
 
+module.exports = {delSRAntigos,delPatchEventos,delDocumentos};
 
-//########################################//
-cron.schedule('0 0 1 * *', async () => {
 
-  try {
-    await delSRAntigos();
-  } catch (err) {
-    console.error('[CRON] Erro ao remover sugestões/reclamações:', err.message);
-  }
 
-  try {
-    await delPatchEventos();
-  } catch (err) {
-    console.error('[CRON] Erro ao atualizar/remover eventos:', err.message);
-  }
-
-  try {
-    await delDocumentos();
-  } catch (err) {
-    console.error('[CRON] Erro ao apagar documentos:', err.message);
-  }
-
-});
-//########################################//
-    
    

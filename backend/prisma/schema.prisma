@@ -24,7 +24,7 @@ model associacoes {
   nome_A     String     @db.VarChar(255)
   texto_A    String?    @db.VarChar(255)
 
-  media      String?    @db.VarChar(255)   
+  media    media?   @relation("AssociacaoMedia")   
 }
 
 model documentos {
@@ -75,6 +75,9 @@ model media {
   documentoId   Int?
   sugestoes_reclamacoesId Int?
   localId       Int?
+
+  associacaoId  Int?          @unique
+  associacoes   associacoes?  @relation("AssociacaoMedia", fields: [associacaoId], references: [id])
 
   evento        eventos?      @relation("EventoMedia", fields: [eventoId], references: [id])
   galeria       galeria?      @relation("GaleriaMedia", fields: [galeriaId], references: [id])

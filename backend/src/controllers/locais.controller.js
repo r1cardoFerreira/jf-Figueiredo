@@ -84,7 +84,6 @@ module.exports = {
   getAllLocais,
   getLocaisTipo,
   getLocalId,
-  updateEvento,
   updateLocal,
   deleteLocalId,
 };
