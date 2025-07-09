@@ -24,7 +24,7 @@ model associacoes {
   nome_A     String     @db.VarChar(255)
   texto_A    String?    @db.VarChar(255)
 
-  media      String     @db.VarChar(255)   
+  media      String?    @db.VarChar(255)   
 }
 
 model documentos {
@@ -35,7 +35,7 @@ model documentos {
   media      media[]    @relation("DocumentoMedia")
 }
 
-model Locais {
+model locais {
   id          Int       @id @default(autoincrement())
   nome_L      String    @db.VarChar(255)
   texto_L     String?    @db.VarChar(255)
@@ -44,7 +44,7 @@ model Locais {
   tipo_L      tipo_L    @default(outro)
   estado      estado     @default(ativo)
 
-  media      media[]    @relation("LocaisMedia")
+  media      media[]    @relation("LocalMedia")
 }
 
 model galeria {
@@ -71,15 +71,14 @@ model media {
   file          String        @db.VarChar(255)
 
   eventoId      Int?
-  associacaoId  Int?
   galeriaId     Int?
   documentoId   Int?
   sugestoes_reclamacoesId Int?
+  localId       Int?
 
   evento        eventos?      @relation("EventoMedia", fields: [eventoId], references: [id])
-  associacao    associacoes?  @relation("AssociacaoMedia", fields: [associacaoId], references: [id])
   galeria       galeria?      @relation("GaleriaMedia", fields: [galeriaId], references: [id])
-  local         local?        @relation("LocalMedia", fields: [localId], references: [id])
+  local         locais?       @relation("LocalMedia", fields: [localId], references: [id])
   documento     documentos?   @relation("DocumentoMedia", fields: [documentoId], references: [id])
   sugestoes_reclamacoes sugestoes_reclamacoes? @relation("SugestoesReclamacoesMedia", fields: [sugestoes_reclamacoesId], references: [id])
 }

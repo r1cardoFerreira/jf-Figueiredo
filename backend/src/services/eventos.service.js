@@ -41,7 +41,7 @@ async function getEventoId(id) {
 }
 
 async function updateEvento(dadosAtualizados, id, files) {
-    // Atualizar o evento
+    
     const eventoAtualizado = await prisma.eventos.update({
         where: { id },
         data: dadosAtualizados
@@ -56,17 +56,30 @@ async function updateEvento(dadosAtualizados, id, files) {
 }
 
 async function deleteEventoId(id) {
-    const resposta = await prisma.eventos.delete({
-        where: { id: id },
-    });
+  const resposta = await prisma.eventos.delete({
+      where: { id: id },
+  });
 
-    await prisma.media.deleteMany({
-        where: {eventoId: id}
-    })
+  await prisma.media.deleteMany({
+      where: {eventoId: id}
+  })
 
-    return resposta;
+  return resposta;
+}
+
+async function getMaxSeisEventos() {
+  const eventos = await prisma.eventos.findMany({
+    where: { estado: 'ativo' },
+    include: { media: true },
+    orderBy: { data_E: 'desc' }, 
+    take: 6                       
+  });
+
+  return eventos;
 }
 
 
 
-module.exports = { createEvento, getAllEvento, getEventoTipo, updateEvento, getEventoId, deleteEventoId};
+
+
+module.exports = { createEvento, getAllEvento, getEventoTipo, updateEvento, getEventoId, deleteEventoId, getMaxSeisEventos};

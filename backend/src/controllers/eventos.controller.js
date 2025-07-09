@@ -67,6 +67,18 @@ async function updateEvento(req, res){
     }
 }
 
+async function getMaxSeisEventos(req, res) {
+
+  try {
+      const eventos = await eventosService.getMaxSeisEventos();
+      res.json(eventos);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({error: 'Erro ao Procurar ultimos seis eventos'});
+  }
+  
+}
+
 
 module.exports = {
   createEvento,
@@ -74,4 +86,5 @@ module.exports = {
   getEventoTipo,
   updateEvento,
   getEventoId,
+  getMaxSeisEventos,
 };
