@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link , Outlet} from 'react-router-dom';
 import '../styles/navbar.css';
 import logo from '../../public/brg-figueiredo.jpg';
 
@@ -24,17 +25,17 @@ const Navbar = () => {
           Freguesia ▾
           {openDropdown === 'freguesia' && (
             <div className="dropdown">
-              <a href="#historia">História</a>
-              <a href="#Heraldica">Heraldica</a>
+              <a><Link to="/historia">História</Link></a>
+              <a><Link to="/heraldica">Heraldica</Link></a>
               <a href="#Visitar">Visitar</a>
               <a href="#mapa">Rede Escolar</a>
               <a href="#Galeria">Galeria</a>
-              <a href="#mapa">Associotismo</a>
+              <a><Link to="/associacoes">Associotismo</Link></a>
             </div>
           )}
         </div>
         <a href="#eventos">Eventos</a>
-        <a href="#corpo-social">Corpo Social</a>
+        <a><Link to="/corposocial">Corpo Social</Link></a>
         <div className="nav-item" onClick={() => toggleDropdown('autarquia')}>
           Autarquia ▾
           {openDropdown === 'autarquia' && (
@@ -48,6 +49,7 @@ const Navbar = () => {
         </div>
         <a className="right" href="#contactos">Contactos</a>
       </nav>
+      <Outlet />
     </header>
   );
 };
