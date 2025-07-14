@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import Navbar from "../components/navbar.jsx"
 import Footer from "../components/footer.jsx"
 
@@ -30,6 +30,43 @@ const Associacoes= () =>{
         </div>
       ))}
     </div>
+    </div>
+  );
+};
+
+export default Associacoes;*/
+
+import React from "react";
+import Navbar from "../components/navbar.jsx";
+import Footer from "../components/footer.jsx";
+import logoRancho from "../../public/Rancho_logo.jpg";
+import "../styles/associacoes.css";
+
+const Associacoes = () => {
+  return (
+    <div>
+      <Navbar />
+      <div className="associacao-container">
+        <div className="associacao-card">
+          <img
+            className="associacao-card-image"
+            src={logoRancho}
+            alt="Logo Rancho"
+          />
+          <div className="associacao-name">ARC Helios de Figueiredo</div>
+        </div>
+
+        {/* Podes adicionar mais cartões assim */}
+        <div className="associacao-card">
+          <div className="associacao-placeholder">imagem</div>
+          <div className="associacao-name">Outra Associação</div>
+        </div>
+
+        <div className="associacao-card">
+          <div className="associacao-placeholder">imagem</div>
+          <div className="associacao-name">Mais uma</div>
+        </div>
+      </div>
     </div>
   );
 };
