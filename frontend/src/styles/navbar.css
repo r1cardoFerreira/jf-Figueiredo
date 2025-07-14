@@ -1,16 +1,17 @@
 .header {
   display: flex;
   justify-content: space-between;
-  font-family: 'poppins';
   align-items: center;
   padding: 12px 24px;
   background-color: white;
+  font-family: 'Poppins';
+  position: relative;
+  z-index: 200;
 }
 
 .left-section {
   display: flex;
   align-items: center;
-  cursor: pointer;
 }
 
 .logo {
@@ -38,24 +39,23 @@
 .nav {
   display: flex;
   gap: 60px;
+  align-items: center;
 }
 
-.nav a {
+.nav a, .nav-item {
   text-decoration: none;
   color: #000;
   font-size: 24px;
   font-weight: 450;
+  cursor: pointer;
 }
+
 .right {
-    margin-right:120px ;
+  margin-right: 120px;
 }
 
 .nav-item {
   position: relative;
-  font-size: 24px;
-  font-weight: 450;
-  cursor: pointer;
-  color: #000;
 }
 
 .dropdown {
@@ -64,7 +64,7 @@
   left: 0;
   background-color: white;
   min-width: 180px;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   z-index: 100;
   display: flex;
   flex-direction: column;
@@ -81,4 +81,78 @@
 
 .dropdown a:hover {
   background-color: #d8d8d8;
+}
+
+/* Mobile menu button */
+.mobile-menu-icon {
+  display: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.mobile-menu-icon.open {
+  transform: rotate(180deg);
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 20px;
+    display: none;
+  }
+
+  .nav.active {
+    display: flex;
+  }
+
+  .nav-item {
+    font-size: 20px;
+  }
+
+  .nav a {
+    font-size: 20px;
+  }
+
+  .right {
+    margin-right: 0;
+  }
+
+  .mobile-menu-icon {
+    display: block;
+  }
+
+  .dropdown {
+    position: static;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .dropdown a {
+    padding: 10px 0;
+    font-size: 18px;
+  }
+
+  .header {
+    padding: 12px 16px;
+  }
+
+  .logo {
+    height: 60px;
+  }
+
+  .main-title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
 }
