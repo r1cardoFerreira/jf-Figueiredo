@@ -7,6 +7,7 @@ import Sugestao from "./pages/sugestao";
 import Historia from "./pages/historia";
 import CorpoSocial from "./pages/corposocial";
 import Associacoes from "./pages/associacoes";
+import Login from "./pages/admin/login";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/Sugestao" element={<Sugestao/>}/>
         <Route path="/corposocial" element={<CorpoSocial/>}/>
         <Route path="/associacoes" element={<Associacoes/>}/>
+        <Route path="/admin" element={<Login/>}/>
       </Routes>
     </BrowserRouter>
   );
