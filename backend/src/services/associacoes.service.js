@@ -7,6 +7,7 @@ async function createAssociacao(dados, file) {
         data:{ 
             nome_A: dados.nome_A,
             texto_A: dados.texto_A,
+            contactos: dados.contactos
         }
       });
     const dadosID = { id: associacao.id, tipo: 'associacao' }

@@ -23,6 +23,7 @@ model associacoes {
   id         Int        @id @default(autoincrement())
   nome_A     String     @db.VarChar(255)
   texto_A    String?    @db.Text
+  contactos  String?     @db.VarChar(255)
 
   media    media?   @relation("AssociacaoMedia")   
 }
