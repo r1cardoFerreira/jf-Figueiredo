@@ -87,7 +87,7 @@
 .mobile-menu-icon {
   display: none;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.6s ease;
 }
 
 .mobile-menu-icon.open {

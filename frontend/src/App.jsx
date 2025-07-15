@@ -8,6 +8,8 @@ import Historia from "./pages/historia";
 import CorpoSocial from "./pages/corposocial";
 import Associacoes from "./pages/associacoes";
 import Login from "./pages/admin/login";
+import AdminNavbar from "./components/admin/navbar_admin";
+import AssociationForm from "./pages/admin/associacoesAdmin";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/corposocial" element={<CorpoSocial/>}/>
         <Route path="/associacoes" element={<Associacoes/>}/>
         <Route path="/admin" element={<Login/>}/>
+        <Route path="/navbaradmin" element={<AdminNavbar/>}/>
+        <Route path="/associacoesadmin" element={<AssociationForm/>}/>
       </Routes>
     </BrowserRouter>
   );
