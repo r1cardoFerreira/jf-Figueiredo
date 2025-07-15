@@ -26,7 +26,7 @@ async function delSRAntigos()
 
 async function delPatchEventos() {
   const dataLimiteDel = new Date(Date.now() - 60 * 24 * 60 * 60 * 1000); 
-  const dataLimitePatch = new Date(); 
+  const dataLimitePatch = new Date(Date.now); 
 
   const eventosDelPatch = await prisma.eventos.findMany({
     where: {
@@ -81,7 +81,6 @@ async function delDocumentos()
     {
         await deleteDocumentosId(documento.id)
     }
-
   
 }
 
