@@ -5,6 +5,8 @@ import "../../styles/admin/associacoes_admin.css";
 function AssociationsPage() {
   const [associations, setAssociations] = useState([]);
   const [nome_A, setNome_A] = useState("");
+  const [email, setEmail] = useState("");
+  const [telefone, setTelefone] = useState("");
   const [texto_A, setTexto_A] = useState("");
   const [media, setMedia] = useState(null);
   const [editingId, setEditingId] = useState(null);
@@ -26,6 +28,8 @@ function AssociationsPage() {
     const formData = new FormData();
     formData.append("nome_A", nome_A);
     formData.append("texto_A", texto_A);
+    formData.append("email", email);
+    formData.append("telefone", telefone);
     if (media) formData.append("media", media);
 
     // Se estiver editando, apaga antes de criar novamente
@@ -49,12 +53,16 @@ function AssociationsPage() {
 
   const handleEdit = (assoc) => {
     setNome_A(assoc.nome_A);
+    setEmail(assoc.email);
+    setTelefone(assoc.telefone);
     setTexto_A(assoc.texto_A);
     setEditingId(assoc.id);
   };
 
   const resetForm = () => {
     setNome_A("");
+    setEmail("");
+    setTelefone("");
     setTexto_A("");
     setMedia(null);
     setEditingId(null);
@@ -75,6 +83,19 @@ function AssociationsPage() {
           placeholder="Nome"
           required
         />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          required
+        />
+        <input
+          type="text"
+          value={telefone}
+          onChange={(e) => setTelefone(e.target.value)}
+          placeholder="Telefone"
+        />
         <textarea
           value={texto_A}
           onChange={(e) => setTexto_A(e.target.value)}
@@ -88,7 +109,7 @@ function AssociationsPage() {
         />
         <button className="criar-editar-button"type="submit">{editingId ? "Atualizar" : "Criar"}</button>
         {editingId && (
-          <button type="button" onClick={resetForm}>
+          <button type="button" className="delete-btn" onClick={resetForm}>
             Cancelar
           </button>
         )}
@@ -98,16 +119,19 @@ function AssociationsPage() {
         <h2>Associações Cadastradas</h2>
         {associations.map((assoc) => (
           <div key={assoc.id} className="item">
-            <h3>{assoc.nome_A}</h3>
-            <p>{assoc.texto_A}</p>
             {assoc.media && (
               <img
-                src={`http://localhost:3001/uploads/${assoc.media.file}`}
+                src={`http://localhost:3000/uploads/${assoc.media.file}`}
                 alt=""
                 className="thumb"
               />
             )}
-            <button onClick={() => handleEdit(assoc)}>Editar</button>
+            <h3>{assoc.nome_A}</h3>
+            <p>{assoc.email}</p>
+            <p>{assoc.telefone}</p>
+            <p>{assoc.texto_A}</p>
+            
+            <button className="criar-editar-button" onClick={() => handleEdit(assoc)}>Editar</button>
             <button
               onClick={() => handleDelete(assoc.id)}
               className="delete-btn"

@@ -1,7 +1,7 @@
 .associacao-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  max-width: 1000px;
+  max-width: 600px;
   margin: 0 auto;
   gap: 20px;
   padding: 20px;

@@ -22,6 +22,7 @@ h1 {
 }
 
 .form input[type="text"],
+.form input[type='email'],
 .form textarea,
 .form input[type="file"] {
   display: block;
@@ -35,18 +36,8 @@ h1 {
   background: #fafafa;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
-input#file-upload-button{
-    background-color: #fff;
-    color: #121ca7;
-    border-radius: 15px;
-    border:#121ca7 solid 2px ;
-    padding-left: 7%;
-    padding-right: 7%;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    font-weight: 700;
-}
 .form input[type="text"]:focus,
+.form input[type='email']:focus,
 .form textarea:focus {
   border-color: #121ca7;
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
@@ -84,12 +75,16 @@ input#file-upload-button{
 }
 
 .delete-btn {
-  background: #c62828;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  margin-left: 10px;
-  cursor: pointer;
+    background-color: #fff;
+    color: #c62828;
+    border-radius: 15px;
+    border:#c62828 solid 2px ;
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    font-weight: 700;
+    margin: 25px;
 }
 .criar-editar-button{
     background-color: #fff;
@@ -104,6 +99,12 @@ input#file-upload-button{
 }
 .criar-editar-button:hover{
     background-color: #121ca7;
+    color: #fff;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.delete-btn:hover{
+  background-color: #c62828;
     color: #fff;
     transition: all 0.2s;
     cursor: pointer;
