@@ -25,6 +25,7 @@ h1 {
 .form textarea,
 .form input[type="file"] {
   display: block;
+  font-family: "poppins";
   width: 80%;
   margin: 15px 0;
   padding: 12px 14px;
@@ -34,10 +35,20 @@ h1 {
   background: #fafafa;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
-
+input#file-upload-button{
+    background-color: #fff;
+    color: #121ca7;
+    border-radius: 15px;
+    border:#121ca7 solid 2px ;
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    font-weight: 700;
+}
 .form input[type="text"]:focus,
 .form textarea:focus {
-  border-color: #3498db;
+  border-color: #121ca7;
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
   background: #fff;
   outline: none;
@@ -45,6 +56,7 @@ h1 {
 
 .form textarea {
   resize: vertical;
+  font-family: "poppins";
   min-height: 100px;
 }
 
