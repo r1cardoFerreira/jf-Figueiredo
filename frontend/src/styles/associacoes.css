@@ -1,10 +1,11 @@
 .associacao-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  max-width: 600px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
   padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+  cursor: pointer;
 }
 
 .associacao-card {

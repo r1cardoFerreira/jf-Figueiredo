@@ -1,11 +1,11 @@
-import React from "react";
-import Navbar from "../components/navbar.jsx"
-import Footer from "../components/footer.jsx"
+import React, { useState, useEffect } from "react";
+import Navbar from "../components/navbar.jsx";
+import Footer from "../components/footer.jsx";
+import { Link, Outlet } from "react-router-dom";
 import "../styles/associacoes.css";
-import { useState ,useEffect} from "react";
 
-const Associacoes= () =>{
-    const [associacoes, setAssociacoes] = useState([]);
+const Associacoes = () => {
+  const [associacoes, setAssociacoes] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/api/associacoes")
@@ -13,25 +13,35 @@ const Associacoes= () =>{
       .then((data) => setAssociacoes(data))
       .catch((error) => console.error("Erro ao buscar associações:", error));
   }, []);
-    return(
-      <div>
-        <Navbar/>
-         <div className="associacao-container">
-      {associacoes.map((assoc) => (
-        <div key={assoc.id} className="associacao-card">
-          {assoc.media ? (
-            <img
-              src={`http://localhost:3000/api/${assoc.media}`}
-              alt={`Emblema de ${assoc.nome_A}`}
-              className="associacao-card-image"
-            />
-          ) : (
-            <div className="associacao-placeholder">imagem</div>
-          )}
-          <div className="associacao-name">{assoc.nome_A}</div>
-        </div>
-      ))}
-    </div>
+
+  return (
+    <div>
+      <Navbar />
+      <div className="associacao-container">
+        {associacoes.map((assoc) => (
+          <Link
+            key={assoc.id}
+            to={`/associacoesdetalhes/${assoc.id}`}
+            className="associacao-link"
+          >
+            <div className="associacao-card">
+              {assoc.media ? (
+                <img
+                  src={`http://localhost:3000/uploads/${
+                    assoc.media.file || assoc.media
+                  }`}
+                  alt={`Emblema de ${assoc.nome_A}`}
+                  className="associacao-card-image"
+                />
+              ) : (
+                <div className="associacao-placeholder">imagem</div>
+              )}
+              <div className="associacao-name">{assoc.nome_A}</div>
+            </div>
+          </Link>
+        ))}
+      </div>
+      <Outlet />
     </div>
   );
 };

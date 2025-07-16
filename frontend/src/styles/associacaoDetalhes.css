@@ -1,0 +1,47 @@
+.detalhes-container {
+  max-width: 60%;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  color: #000;
+  font-family: Arial, sans-serif;
+}
+
+.detalhes-topo {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.detalhes-imagem {
+  width: 280px;
+  height: auto;
+  object-fit: contain;
+}
+
+.detalhes-nome {
+  font-size: 2rem;
+  font-weight: bold;
+margin: auto;
+  white-space: nowrap;
+}
+.detalhes-subtitulo{
+    font-size: 1.6em;
+    color: #121ca7;
+}
+.detalhes-conteudo {
+  text-align: justify;
+  font-family: "poppins";
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.detalhes-contato {
+  font-size: 1rem;
+}
+
+.detalhes-contato p {
+  margin: 0.5rem 0;
+}
