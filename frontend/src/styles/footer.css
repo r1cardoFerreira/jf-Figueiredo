@@ -13,7 +13,10 @@
 .footer-text{
     font-size:18px;
     color: #fff;
+    line-height: 2rem;
 }
-.map{
-    height: 370px !important;
+.map {
+  width: 400px;
+  height: 300px !important;
+  margin:24px 0px;
 }

@@ -11,6 +11,7 @@ import Login from "./pages/admin/login";
 import AdminNavbar from "./components/admin/navbar_admin";
 import AssociationForm from "./pages/admin/associacoesAdmin";
 import AssociacoesDetalhes from "./pages/associacoesDetalhes";
+import Toponímia from "./pages/toponomia";
 function App() {
   return (
     <BrowserRouter>
@@ -26,6 +27,7 @@ function App() {
         <Route path="/navbaradmin" element={<AdminNavbar/>}/>
         <Route path="/associacoesadmin" element={<AssociationForm/>}/>
         <Route path="/associacoesdetalhes/:id" element={<AssociacoesDetalhes/>}/>
+        <Route path="/toponimia" element={<Toponímia/>}/>
       </Routes>
     </BrowserRouter>
   );

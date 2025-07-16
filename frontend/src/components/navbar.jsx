@@ -19,13 +19,14 @@ const Navbar = () => {
 
   return (
     <header className="header">
-      <div className="left-section">
+     <Link to="/"> <div className="left-section">
         <img src={logo} alt="Brasão de Figueiredo" className="logo" />
         <div className="title">
           <span className="subtitle">Freguesia de</span>
           <span className="main-title">Figueiredo</span>
         </div>
       </div>
+      </Link>
 
       <div className={`mobile-menu-icon ${mobileMenuOpen ? 'open' : ''}`} onClick={toggleMobileMenu}>
           {mobileMenuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
