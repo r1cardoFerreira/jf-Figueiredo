@@ -1,0 +1,58 @@
+.container {
+  padding: 20px;
+}
+
+.form {
+  margin-bottom: 30px;
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+input[type="text"],
+input[type="file"] {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 10px;
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  margin-top: 10px;
+  background-color: crimson;
+}
+
+.galeria-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.galeria-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.thumbs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.thumb {
+  height: 100px;
+  border-radius: 4px;
+  object-fit: cover;
+}
