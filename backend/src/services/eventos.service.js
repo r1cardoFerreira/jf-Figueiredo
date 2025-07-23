@@ -9,7 +9,7 @@ async function createEvento(dados, files) {
       titulo_E: dados.titulo_E,
       texto_E: dados.texto_E,
       tipo_E: dados.tipo_E,
-      data_E: dados.data_E
+      data_E: new Date(dados.data_E)
     }
   });
   const dadosID = { id: evento.id, tipo: 'evento' }

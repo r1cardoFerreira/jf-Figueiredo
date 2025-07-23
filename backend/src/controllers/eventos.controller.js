@@ -79,6 +79,18 @@ async function getMaxSeisEventos(req, res) {
   
 }
 
+async function deleteEvento(req, res) {
+  const id = Number(req.params.id);
+  
+  try {
+    await eventosService.deleteEventoId(id);
+    res.status(200).json({ message: 'Evento deletado com sucesso' });
+  } catch (error) {
+    console.error("Erro ao deletar evento:", error);
+    res.status(500).json({ error: "Erro ao deletar evento", detalhes: error.message });
+  }
+}
+
 
 module.exports = {
   createEvento,
@@ -87,4 +99,5 @@ module.exports = {
   updateEvento,
   getEventoId,
   getMaxSeisEventos,
+  deleteEvento,
 };

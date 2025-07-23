@@ -5,7 +5,7 @@ import "../../styles/admin/eventos_admin.css";
 const AdminEventos = () => {
   const [eventos, setEventos] = useState([]);
   const [titulo_E, setTitulo_E] = useState("");
-  const [text_E, setText_E] = useState("");
+  const [texto_E, setTexto_E] = useState("");
   const [tipo_E, setTipo_E] = useState("");
   const [estado, setEstado] = useState("");
   const [data_E, setData_E] = useState("");
@@ -35,28 +35,48 @@ const AdminEventos = () => {
 
     formData.append("data_CE", now);
     formData.append("titulo_E", titulo_E);
-    formData.append("text_E", text_E);
+    formData.append("texto_E", texto_E);
     formData.append("tipo_E", tipo_E);
     formData.append("estado", estado);
     formData.append("data_E", data_E);
-    if (media) formData.append("media", media); // nome deve ser "media" (igual no multer)
+    
+    if (media && media.length > 0) {
+      media.forEach((file) => {
+      formData.append("media", file)
+    });
+}
 
-    try {
-      if (editingId) {
-        await fetch(`${API_URL}/${editingId}`, { method: "DELETE" });
-      }
 
-      await fetch(API_URL, {
-        method: "POST",
-        body: formData, // NÃO defina headers! O browser faz isso automaticamente.
+   try {
+    if (editingId) {
+
+      const response = await fetch(`${API_URL}/${editingId}`, {
+        method: "PATCH",
+        body: formData,
       });
+      
+      if (!response.ok) {
+        throw new Error(`Erro HTTP: ${response.status}`);
+      }
+    } else {
 
-      resetForm();
-      fetchEventos();
-    } catch (error) {
-      console.error("Erro ao submeter evento:", error);
+      const response = await fetch(API_URL, {
+        method: "POST",
+        body: formData,
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Erro HTTP: ${response.status}`);
+      }
     }
-  };
+
+    resetForm();
+    fetchEventos();
+    alert(editingId ? "Evento atualizado com sucesso!" : "Evento criado com sucesso!");
+  } catch (error) {
+    console.error("Erro ao submeter evento:", error);
+    alert("Erro ao submeter evento: " + error.message);
+  }};
 
   const handleDelete = async (id) => {
     try {
@@ -69,7 +89,7 @@ const AdminEventos = () => {
 
   const handleEdit = (evento) => {
     setTitulo_E(evento.titulo_E);
-    setText_E(evento.text_E);
+    setTexto_E(evento.texto_E);
     setTipo_E(evento.tipo_E);
     setEstado(evento.estado);
     setData_E(evento.data_E);
@@ -78,11 +98,11 @@ const AdminEventos = () => {
 
   const resetForm = () => {
     setTitulo_E("");
-    setText_E("");
+    setTexto_E("");
     setTipo_E("");
     setEstado("");
     setData_E("");
-    setMedia(null);
+    setMedia([]); //  <---
     setEditingId(null);
   };
 
@@ -103,8 +123,8 @@ const AdminEventos = () => {
             required
           />
           <textarea
-            value={text_E}
-            onChange={(e) => setText_E(e.target.value)}
+            value={texto_E}
+            onChange={(e) => setTexto_E(e.target.value)}
             placeholder="Descrição"
             rows="3"
           />
@@ -128,7 +148,11 @@ const AdminEventos = () => {
           />
           <input
             type="file"
-            onChange={(e) => setMedia(e.target.files[0])}
+            multiple
+            onChange={(e) => {
+              const newFiles = Array.from(e.target.files);
+              setMedia((prevFiles) => [...prevFiles, ...newFiles]);
+            }}
             accept="image/*"
           />
 
@@ -146,19 +170,20 @@ const AdminEventos = () => {
           <h2>Eventos Cadastrados</h2>
           {eventos.map((evento) => (
             <div key={evento.id} className="item">
-              {evento.media && (
-                <img
-                  src={`http://localhost:3000/uploads/${evento.media.file}`}
-                  alt="Media do Evento"
-                  className="thumb"
-                />
-              )}
+             {evento.media && Array.isArray(evento.media) && evento.media.map((m, i) => (
+                  <img
+                    key={i}
+                    src={`http://localhost:3000/uploads/${m.file}`}
+                    alt={`Imagem ${i + 1}`}
+                    className="thumb"
+                  />
+                ))}
               <h3>{evento.titulo_E}</h3>
               <p><strong>Data Criação:</strong> {evento.data_CE}</p>
               <p><strong>Data Evento:</strong> {evento.data_E}</p>
               <p><strong>Tipo:</strong> {evento.tipo_E}</p>
               <p><strong>Estado:</strong> {evento.estado}</p>
-              <p>{evento.text_E}</p>
+              <p>{evento.texto_E}</p>
 
               <button className="criar-editar-button" onClick={() => handleEdit(evento)}>
                 Editar

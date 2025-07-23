@@ -13,5 +13,5 @@ router.get('/tipo/:tipo', eventosController.getEventoTipo);
 router.get('/:id', eventosController.getEventoId);
 router.patch('/:id', upload.array('media', 10), eventosController.updateEvento);
 router.get('/recentes', eventosController.getMaxSeisEventos);
-
+router.delete('/:id', eventosController.deleteEvento);
 module.exports = router;
