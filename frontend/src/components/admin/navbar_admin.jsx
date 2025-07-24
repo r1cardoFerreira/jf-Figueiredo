@@ -27,9 +27,9 @@ const AdminNavbar = () => {
               <nav className={`nav ${mobileMenuOpen ? 'active' : ''}`}>
                 <Link to="/associacoesadmin">Associacoes</Link>
 
-                <Link>Eventos</Link>
+                <Link to="/eventosadmin">Eventos</Link>
 
-                <Link>Galeria</Link>
+                <Link to="/galeriaadmin">Galeria</Link>
 
                 <Link className='right'>Locais</Link>
                 </nav>
