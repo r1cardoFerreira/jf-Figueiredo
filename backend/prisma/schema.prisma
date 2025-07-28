@@ -43,7 +43,7 @@ model locais {
   texto_L     String?    @db.VarChar(255)
   latitude    Float?
   longitude   Float?
-  tipo_L      tipo_L    @default(outro)
+  tipo_L      tipo_L      @default(outro)
   estado      estado     @default(ativo)
 
   media      media[]    @relation("LocalMedia")

@@ -22,6 +22,7 @@ const associacoesRoutes = require('./src/routes/assosiacoes.route')
 const documentosRoutes = require('./src/routes/documentos.route')
 const galeriaRoutes = require('./src/routes/galeria.route')
 const sugestoes_reclamacoesRoutes = require('./src/routes/sugestoes_reclamacoes.route')
+const locaisRoutes = require('./src/routes/locais.route')
 const login = require('./src/routes/login.route')
 // Middlewares
 app.use(cors());
@@ -34,6 +35,7 @@ app.use('/api/associacoes', associacoesRoutes);
 app.use('/api/documentos', documentosRoutes);
 app.use('/api/galeria', galeriaRoutes)
 app.use('/api/sugestoes_reclamacoes', sugestoes_reclamacoesRoutes)
+app.use('/api/locais', locaisRoutes)
 app.use('/api/admin', login )
 // Erro global para capturar erros de Multer e outros
 app.use((err, req, res, next) => {

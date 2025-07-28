@@ -4,8 +4,8 @@ import "../../styles/admin/eventos_admin.css";
 
 const AdminLocais = () => {
   const [locais, setLocais] = useState([]);
-  const [label_L, setLabel_L] = useState("");
-  const [descricao, setDescricao] = useState("");
+  const [nome_L, setLabel_L] = useState("");
+  const [texto_L, setDescricao] = useState("");
   const [tipo_L, setTipo_L] = useState("");
   const [media, setMedia] = useState(null);
   const [editingId, setEditingId] = useState(null);
@@ -26,8 +26,8 @@ const AdminLocais = () => {
     e.preventDefault();
     const formData = new FormData();
 
-    formData.append("label_L", label_L);
-    formData.append("descricao", descricao);
+    formData.append("nome_L", nome_L);
+    formData.append("descricao", texto_L);
     formData.append("tipo_L", tipo_L);
     if (media) formData.append("media", media);
 
@@ -55,8 +55,8 @@ const AdminLocais = () => {
   };
 
   const handleEdit = (local) => {
-    setLabel_L(local.label_L);
-    setDescricao(local.descricao);
+    setLabel_L(local.nome_L);
+    setDescricao(local.texto_L);
     setTipo_L(local.tipo_L);
     setEditingId(local.id);
   };
@@ -80,13 +80,13 @@ const AdminLocais = () => {
 
           <input
             type="text"
-            value={label_L}
+            value={nome_L}
             onChange={(e) => setLabel_L(e.target.value)}
             placeholder="Nome do Local"
             required
           />
           <textarea
-            value={descricao}
+            value={texto_L}
             onChange={(e) => setDescricao(e.target.value)}
             placeholder="Descrição"
             rows="3"
@@ -124,9 +124,9 @@ const AdminLocais = () => {
                   className="thumb"
                 />
               )}
-              <h3>{local.label_L}</h3>
+              <h3>{local.nome_L}</h3>
               <p><strong>Tipo:</strong> {local.tipo_L}</p>
-              <p>{local.descricao}</p>
+              <p>{local.texto_L}</p>
 
               <button
                 className="criar-editar-button"

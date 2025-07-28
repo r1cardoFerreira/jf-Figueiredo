@@ -14,7 +14,7 @@ async function createLocal(req, res) {
 
 async function getAllLocais(req, res) {
   try {
-    const locais = await locaisServiceService.getAllLocais();
+    const locais = await locaisService.getAllLocais();
     res.json(locais);
   } catch (error) {
     console.error(error);
