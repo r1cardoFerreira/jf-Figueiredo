@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AdminNavbar from "../../components/admin/navbar_admin";
-import "../../styles/admin/galeria_admin.css"; // Cria se ainda não existir
+import "../../styles/admin/galeria_admin.css"; 
 
 const AdminGaleria = () => {
   const [galeria, setGaleria] = useState([]);

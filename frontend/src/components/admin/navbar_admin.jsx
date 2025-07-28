@@ -31,6 +31,8 @@ const AdminNavbar = () => {
 
                 <Link to="/galeriaadmin">Galeria</Link>
 
+                <Link to="/docsadmin">Documentos</Link>
+
                 <Link className='right'>Locais</Link>
                 </nav>
               <Outlet />
