@@ -15,6 +15,7 @@ import Toponímia from "./pages/toponomia";
 import AdminEventos from "./pages/admin/eventosAdmin";
 import AdminGaleria from "./pages/admin/galeriaAdmin";
 import AdminLocais from "./pages/admin/locaisadmin";
+import Galeria from "./pages/galeria";
 function App() {
   return (
     <BrowserRouter>
@@ -34,6 +35,7 @@ function App() {
         <Route path="/eventosadmin" element={<AdminEventos/>}/>
         <Route path="/galeriaadmin" element={<AdminGaleria/>}/>
         <Route path="/locaisadmin" element={<AdminLocais/>}/>
+        <Route path ="/galeria" element={<Galeria/>}/>
       </Routes>
     </BrowserRouter>
   );

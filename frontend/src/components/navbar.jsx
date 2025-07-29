@@ -40,8 +40,7 @@ const Navbar = () => {
               <Link to="/historia">História</Link>
               <Link to="/heraldica">Heráldica</Link>
               <a href="#Visitar">Visitar</a>
-              <a href="#mapa">Rede Escolar</a>
-              <a href="#Galeria">Galeria</a>
+              <Link to="/galeria">Galeria</Link>
               <Link to="/associacoes">Associativismo</Link>
             </div>
           )}

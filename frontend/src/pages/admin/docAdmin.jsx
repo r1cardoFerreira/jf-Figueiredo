@@ -64,13 +64,19 @@ const AdminDocumentos = () => {
 
         <form onSubmit={handleSubmit} className="form">
           <h2>Novo Documento</h2>
-          <input
-            type="text"
+          <select
             value={tipo_D}
             onChange={(e) => setTipo_D(e.target.value)}
-            placeholder="Tipo de Documento"
             required
-          />
+          >
+            <option value="">Selecione o tipo de documento</option>
+            <option value="Atas">Atas</option>
+            <option value="Plano de Atividades">Plano de Atividades</option>
+            <option value="Avisos">Avisos</option>
+            <option value="Editais">Editais</option>
+            <option value="Regulamentos">Regulamentos</option>
+            <option value="Relatorios de contas">Relatórios de contas</option>
+          </select>
           <input
                 type="file"
                 multiple
