@@ -1,0 +1,81 @@
+/* Título */
+.espacoCidadao-Title {
+  background: linear-gradient(135deg, #e0f0ff, #f5faff);
+  padding: 30px 20px;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #1e3a5f;
+  border-bottom: 2px solid #d0e7f9;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+
+/* Lista de serviços com cartões */
+.servicos-lista {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1500px;
+    margin: 0 auto 40px auto;
+    padding: 0 20px;
+}
+
+.servico-item {
+  background-color: #f7fafd;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.servico-item:hover {
+  background-color: #eaf4fb;
+  transform: translateY(-2px);
+}
+.servico-item::before {
+  content: "🟦";
+  margin-right: 10px;
+  font-size: 10px;
+  vertical-align: middle;
+}
+
+
+/* Contactos */
+.espacoCidadao-contactos {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 40px;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.espacoCidadao p {
+  text-align: center;
+  color: #555;
+  margin: 5px 0;
+}
+
+.botao-link {
+  display: inline-block;
+  background-color: #007bff;
+  color: white !important;
+  padding: 6px 12px;
+  border-radius: 5px;
+  margin-left: 5px;
+  transition: background-color 0.3s;
+}
+
+.botao-link:hover {
+  background-color: #005bb5;
+}
+
+/* Responsividade geral */
+@media (max-width: 600px) {
+  .espacoCidadao-Title {
+    font-size: 2rem;
+  }
+}
