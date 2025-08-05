@@ -16,12 +16,22 @@ async function createLocal(dados, files) {
     await uploads.createMedia(files, dadosID);
     return local;
 }
-
+/*
 async function getLocaisTipo(tipo){
      return prisma.locais.findMany({
         where:{tipo_L: tipo},
         include: { media: true }
     });
+} */
+
+async function getLocais({ tipo }) {
+  return prisma.locais.findMany({
+    where: {
+      estado: 'ativo',
+      ...(tipo && { tipo_L: tipo }) 
+    },
+    include: { media: true },
+  });
 }
 
 async function getAllLocais() {
@@ -57,4 +67,4 @@ async function updateLocal(dadosAtualizados, id, files) {
 }
 
 
-module.exports = {getAllLocais, createLocal, deleteLocalId, getLocaisTipo, updateLocal};
+module.exports = {getAllLocais, createLocal, deleteLocalId, /*getLocaisTipo,*/ updateLocal, getLocais};

@@ -9,8 +9,9 @@ const router = express.Router();
 
 router.post('/', upload.array('media', 10), locaisController.createLocal);
 router.get('/', locaisController.getAllLocais);
+router.get('/tipo/', locaisController.getLocais);
 router.delete('/:id', locaisController.deleteLocalId);
-router.get('/tipo/:tipo', locaisController.getLocaisTipo);
+// router.get('/tipo/:tipo', locaisController.getLocaisTipo);
 router.get('/:id', locaisController.getLocalId);
 router.patch('/:id', upload.array('media', 10), locaisController.updateLocal);
 

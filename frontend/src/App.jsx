@@ -15,9 +15,12 @@ import Toponímia from "./pages/toponomia";
 import AdminEventos from "./pages/admin/eventosAdmin";
 import AdminGaleria from "./pages/admin/galeriaAdmin"; 
 import AdminLocais from "./pages/admin/locaisadmin";
-import Eventos from "./pages/eventos";//tirar isto (l18 e l40) depois e por este componente na home
+import Eventos from "./pages/eventos";//tirar isto depois e por este componente na home
+import Locais from "./pages/locais";
 import Galeria from "./pages/galeria";
 import EspacoCidadao from "./pages/espaco_cidadao";
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -37,6 +40,7 @@ function App() {
         <Route path="/eventosadmin" element={<AdminEventos/>}/>
         <Route path="/galeriaadmin" element={<AdminGaleria/>}/>
         <Route path="/locaisadmin" element={<AdminLocais/>}/>
+        <Route path="/locais" element={<Locais/>}/>
         <Route path="/eventos" element={<Eventos/>}/> 
         <Route path ="/galeria" element={<Galeria/>}/>
         <Route path ="/espaco-cidadao" element={<EspacoCidadao/>}/>

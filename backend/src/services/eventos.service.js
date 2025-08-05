@@ -68,7 +68,7 @@ async function deleteEventoId(id) {
 
   return resposta;
 }
-
+/*
 async function getMaxSeisEventos() {
   const eventos = await prisma.eventos.findMany({
     where: { estado: 'ativo' },
@@ -78,10 +78,10 @@ async function getMaxSeisEventos() {
   });
 
   return eventos;
-}
+} */
 
 
 
 
 
-module.exports = { createEvento, getEventos, getEventoTipo, updateEvento, getEventoId, deleteEventoId, getMaxSeisEventos};
+module.exports = { createEvento, getEventos, getEventoTipo, updateEvento, getEventoId, deleteEventoId, /*getMaxSeisEventos*/};
