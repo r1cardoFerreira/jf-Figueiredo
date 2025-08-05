@@ -43,8 +43,8 @@
 }
 
 .nav a, .nav-item {
-  text-decoration: none;
-  color: #000;
+  text-decoration: none !important;
+  color: #000 !important;
   font-size: 24px;
   font-weight: 450;
   cursor: pointer;

@@ -23,14 +23,25 @@ html{
 }
 
 .menu-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: auto;
-  cursor: pointer;
-  transition: transform 0.2s;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: auto !important;
+  cursor: pointer !important;
+  transition: transform 0.2s !important;
+  text-decoration: none !important;
+  min-width: 20%;
 }
-
+.menu-item a {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: auto !important;
+  cursor: pointer !important;
+  transition: transform 0.2s !important;
+  text-decoration: none !important;
+  font-size: 30px;
+}
 .menu-item:hover {
   transform: scale(1.05);
 }
@@ -42,7 +53,7 @@ html{
 }
 
 .menu-label {
-  font-size: 28px;
+  font-size: 24px;
   text-align: center;
   color: #000;
 }
