@@ -2,6 +2,8 @@ import React from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import presidente from "../../public/marco_Oliveira.jpg";
+import tesoureiro from "../../public/Joao.jpg"
+import secretario from "../../public/Isabel.jpg"
 import "../styles/corposocial.css"
 
 const CorpoSocial = () => {
@@ -17,14 +19,14 @@ const CorpoSocial = () => {
               </div>
             </div>
              <div className="CS-card">
-              <img src="" alt="Joao Manuel"/>
+              <img src={tesoureiro} alt="Joao Manuel"/>
               <div className="CS-info">
                 <div className="name">Joao Marques</div>
                 <div className="role">Tesoureiro</div>
               </div>
             </div>
              <div className="CS-card">
-              <img src="" alt="Ana Isabel Sousa"/>
+              <img src={secretario} alt="Ana Isabel Sousa"/>
               <div className="CS-info">
                 <div className="name">Ana Isabel Sousa</div>
                 <div className="role">Secretária</div>
