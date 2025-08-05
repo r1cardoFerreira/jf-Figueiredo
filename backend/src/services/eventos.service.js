@@ -18,9 +18,11 @@ async function createEvento(dados, files) {
 }
 
 
-async function getAllEvento() {
+async function getEventos(limite) {
     return prisma.eventos.findMany({
         where:{estado: 'ativo'},
+        take: limite,
+        orderBy: { data_CE: 'desc'},
         include: { media: true }
     });
     
@@ -82,4 +84,4 @@ async function getMaxSeisEventos() {
 
 
 
-module.exports = { createEvento, getAllEvento, getEventoTipo, updateEvento, getEventoId, deleteEventoId, getMaxSeisEventos};
+module.exports = { createEvento, getEventos, getEventoTipo, updateEvento, getEventoId, deleteEventoId, getMaxSeisEventos};

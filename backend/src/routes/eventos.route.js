@@ -8,10 +8,10 @@ const router = express.Router();
 
 
 router.post('/',  upload.array('media', 10), eventosController.createEvento);
-router.get('/', eventosController.getAllEvento);
+router.get('/', eventosController.getEventos);
 router.get('/tipo/:tipo', eventosController.getEventoTipo);
 router.get('/:id', eventosController.getEventoId);
 router.patch('/:id', upload.array('media', 10), eventosController.updateEvento);
-router.get('/recentes', eventosController.getMaxSeisEventos);
+// router.get('/recentes', eventosController.getMaxSeisEventos);
 router.delete('/:id', eventosController.deleteEvento);
 module.exports = router;

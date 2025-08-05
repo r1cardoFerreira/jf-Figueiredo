@@ -12,9 +12,11 @@ async function createEvento(req, res) {
 }
 
 
-async function getAllEvento(req, res) {
+async function getEventos(req, res) {
+
+  const limite = req.query.limit ? parseInt(req.query.limit, 10) : undefined;
   try {
-    const eventos = await eventosService.getAllEvento();
+    const eventos = await eventosService.getEventos(limite);
     res.json(eventos);
   } catch (error) {
     console.error(error);
@@ -67,6 +69,7 @@ async function updateEvento(req, res){
     }
 }
 
+/*
 async function getMaxSeisEventos(req, res) {
 
   try {
@@ -77,7 +80,7 @@ async function getMaxSeisEventos(req, res) {
       res.status(500).json({error: 'Erro ao Procurar ultimos seis eventos'});
   }
   
-}
+} */
 
 async function deleteEvento(req, res) {
   const id = Number(req.params.id);
@@ -94,10 +97,10 @@ async function deleteEvento(req, res) {
 
 module.exports = {
   createEvento,
-  getAllEvento,
+  getEventos,
   getEventoTipo,
   updateEvento,
   getEventoId,
-  getMaxSeisEventos,
+  //getMaxSeisEventos,
   deleteEvento,
 };

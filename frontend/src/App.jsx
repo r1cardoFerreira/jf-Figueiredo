@@ -13,8 +13,9 @@ import AssociationForm from "./pages/admin/associacoesAdmin";
 import AssociacoesDetalhes from "./pages/associacoesDetalhes";
 import Toponímia from "./pages/toponomia";
 import AdminEventos from "./pages/admin/eventosAdmin";
-import AdminGaleria from "./pages/admin/galeriaAdmin";
+import AdminGaleria from "./pages/admin/galeriaAdmin"; 
 import AdminLocais from "./pages/admin/locaisadmin";
+import Eventos from "./pages/eventos";//tirar isto (l18 e l38) depois e por este componente na home
 function App() {
   return (
     <BrowserRouter>
@@ -34,6 +35,7 @@ function App() {
         <Route path="/eventosadmin" element={<AdminEventos/>}/>
         <Route path="/galeriaadmin" element={<AdminGaleria/>}/>
         <Route path="/locaisadmin" element={<AdminLocais/>}/>
+        <Route path="/eventos" element={<Eventos/>}/> 
       </Routes>
     </BrowserRouter>
   );
