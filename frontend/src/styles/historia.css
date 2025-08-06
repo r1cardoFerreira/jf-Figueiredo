@@ -4,8 +4,8 @@
   align-items: center;
   text-align: center;
   width: 80%;
-  margin: 40px auto;
-  height: 600px;
+  margin: auto;
+  height: 500px;
 }
 .historia-container img {
   width: 100%;
@@ -25,9 +25,9 @@
 }
 
 .historia-texto {
-    width: 80%;
+  width: 100%;
   margin-top: 24px;
   font-size: 1.2em;
-  line-height: 1.6;
+  line-height: 2rem;
   text-align: justify;
 }

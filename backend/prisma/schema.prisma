@@ -119,8 +119,6 @@ enum tipo_L {
   outro
 }
 
-
-
 enum estado {
   ativo
   inativo
