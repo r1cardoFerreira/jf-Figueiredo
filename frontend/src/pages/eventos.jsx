@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/navbar.jsx";
 import Footer from "../components/footer.jsx";
+import "../styles/eventos.css"
 
 const isImageFile = (filename) => {
   return /\.(jpg|jpeg|png|webp|gif)$/i.test(filename);
@@ -33,56 +34,36 @@ const Eventos = () => {
   }, [verTodos]);
 
   return (
-    <div>
-      <Navbar />
-      <h2>Eventos</h2>
-
-      {loading ? (
-        <p>A carregar...</p>
-      ) : (
-        <ul>
-          {eventos.map((evento) => (
-            <li key={evento.id}>
-              <h3>{evento.titulo_E}</h3>
-              <p>{evento.texto_E}</p>
-
-              {evento.media && evento.media.length > 0 && (
-                <div>
-                  {evento.media.map((m, i) => {
-                    const url = `http://localhost:3000/uploads/${m.file}`;
-                    if (isImageFile(m.file)) {
-                      return (
-                        <img
-                          key={i}
-                          src={url}
-                          alt={`Imagem ${i + 1} do evento`}
-                          width="150"
-                          style={{ marginRight: 10 }}
-                        />
-                      );
-                    } else {
-                      // Para PDFs ou outros ficheiros mostramos um link para abrir (fazer isto para outros componentes podes-se restringira img tambem)
-                      return (
-                        <p key={i}>
-                          <a href={url} target="_blank" rel="noopener noreferrer">
-                            Ver documento: {m.file}
-                          </a>
-                        </p>
-                      );
-                    }
-                  })}
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {!verTodos && !loading && eventos.length >= 6 && (
-        <button onClick={() => setVerTodos(true)}>Ver todos</button>
-      )}
-      <Footer />
+    <div className="eventos-container">
+  {loading ? (
+    <p>A carregar...</p>
+  ) : (
+    <div className="eventos-grid">
+      {eventos.map((evento) => (
+        <div key={evento.id} className="evento-card">
+          {evento.media && evento.media.length > 0 && isImageFile(evento.media[0].file) && (
+            <img
+              src={`http://localhost:3000/uploads/${evento.media[0].file}`}
+              alt={`Imagem do evento`}
+            />
+          )}
+          <div className="evento-card-content">
+            <p className="evento-data">{new Date(evento.data_E).toLocaleDateString()}</p>
+            <h3 className="evento-titulo">{evento.titulo_E}</h3>
+            <p className="evento-categoria">{evento.categoria || "Desporto"}</p>
+          </div>
+        </div>
+      ))}
     </div>
+  )}
+
+  {!verTodos && !loading && eventos.length >= 6 && (
+    <button className="ver-todos-btn" onClick={() => setVerTodos(true)}>
+      + Eventos
+    </button>
+  )}
+</div>
+
   );
 };
 
