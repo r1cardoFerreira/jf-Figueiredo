@@ -9,7 +9,7 @@ const AdminEventos = () => {
   const [tipo_E, setTipo_E] = useState("");
   const [estado, setEstado] = useState("");
   const [data_E, setData_E] = useState("");
-  const [media, setMedia] = useState(null);
+  const [media, setMedia] = useState([]);
   const [editingId, setEditingId] = useState(null);
 
   const API_URL = "http://localhost:3000/api/eventos";

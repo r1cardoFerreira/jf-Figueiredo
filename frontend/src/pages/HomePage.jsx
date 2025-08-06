@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/navbar";
+import Eventos from "./eventos";
 import { Link } from "react-router-dom";
 import Footer from "../components/footer";
 import imgIgreja from "../../public/Igreja_de_Figueiredo.jpg"
@@ -55,6 +56,7 @@ return(
     </div>
     <section id="Eventos">
       <h1 className="IdTittle">Eventos</h1>
+      <Eventos/>
     </section>
     <Footer/>
 </div>
