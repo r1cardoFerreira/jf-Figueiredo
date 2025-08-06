@@ -33,7 +33,9 @@ const AdminNavbar = () => {
 
                 <Link to="/docsadmin">Documentos</Link>
 
-                <Link to ="/locaisadmin" className='right'>Locais</Link>
+                <Link to ="/locaisadmin">Locais</Link>
+
+                <Link to ="/" className='right'>Sair</Link>
                 </nav>
               <Outlet />
               </header>
