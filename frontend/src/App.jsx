@@ -20,6 +20,7 @@ import Eventos from "./pages/eventos";//tirar isto depois e por este componente 
 import Locais from "./pages/locais";
 import Galeria from "./pages/galeria";
 import EspacoCidadao from "./pages/espaco_cidadao";
+import Locais from "./pages/locais";
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
         <Route path="/eventos" element={<Eventos/>}/> 
         <Route path ="/galeria" element={<Galeria/>}/>
         <Route path ="/espaco-cidadao" element={<EspacoCidadao/>}/>
+        <Route path="/visitar" element={<Locais/>}/>
 
       </Routes>
     </BrowserRouter>
