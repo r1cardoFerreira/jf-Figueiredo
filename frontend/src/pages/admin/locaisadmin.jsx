@@ -11,6 +11,8 @@ const AdminLocais = () => {
   const [editingId, setEditingId] = useState(null);
 
   const API_URL = "http://localhost:3000/api/locais";
+  const token = localStorage.getItem('token');
+
 
   const fetchLocais = async () => {
     const res = await fetch(API_URL);
@@ -35,11 +37,17 @@ const AdminLocais = () => {
       await fetch(`${API_URL}/${editingId}`, {
         method: "PATCH",
         body: formData,
+         headers: {
+            'Authorization': `Bearer ${token}`
+          }
       });
     } else {
       await fetch(API_URL, {
         method: "POST",
         body: formData,
+         headers: {
+            'Authorization': `Bearer ${token}`
+          }
       });
     }
 
@@ -50,6 +58,9 @@ const AdminLocais = () => {
   const handleDelete = async (id) => {
     await fetch(`${API_URL}/${id}`, {
       method: "DELETE",
+       headers: {
+            'Authorization': `Bearer ${token}`
+          }
     });
     fetchLocais();
   };

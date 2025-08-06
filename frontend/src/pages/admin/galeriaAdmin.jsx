@@ -8,6 +8,7 @@ const AdminGaleria = () => {
   const [mediaFiles, setMediaFiles] = useState([]);
 
   const API_URL = "http://localhost:3000/api/galeria";
+  const token = localStorage.getItem('token');
 
   const fetchGaleria = async () => {
     try {
@@ -36,6 +37,9 @@ const AdminGaleria = () => {
       await fetch(API_URL, {
         method: "POST",
         body: formData,
+         headers: {
+            'Authorization': `Bearer ${token}`
+          }
       });
 
       setLabel_G("");
@@ -50,6 +54,9 @@ const AdminGaleria = () => {
     try {
       await fetch(`${API_URL}/${id}`, {
         method: "DELETE",
+         headers: {
+            'Authorization': `Bearer ${token}`
+          }
       });
       fetchGaleria();
     } catch (error) {

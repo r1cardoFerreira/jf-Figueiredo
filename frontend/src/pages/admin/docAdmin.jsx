@@ -53,9 +53,9 @@ const AdminDocumentos = () => {
     try {
       await fetch(`${API_URL}/${id}`, {
         method: "DELETE",
-         headers: {
-            'Authorization': `Bearer ${token}`
-          }
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
       fetchDocumentos();
     } catch (error) {
@@ -77,12 +77,12 @@ const AdminDocumentos = () => {
             required
           >
             <option value="">Selecione o tipo de documento</option>
-            <option value="Atas">Atas</option>
-            <option value="Plano de Atividades">Plano de Atividades</option>
-            <option value="Avisos">Avisos</option>
-            <option value="Editais">Editais</option>
-            <option value="Regulamentos">Regulamentos</option>
-            <option value="Relatorios de contas">Relatórios de contas</option>
+            <option value="atas">Atas</option>
+            <option value="plano_de_atividades">Plano de Atividades</option>
+            <option value="avisos">Avisos</option>
+            <option value="editais">Editais</option>
+            <option value="regulamentos">Regulamentos</option>
+            <option value="relatorios_de_contas">Relatórios de contas</option>
           </select>
           <input
                 type="file"
