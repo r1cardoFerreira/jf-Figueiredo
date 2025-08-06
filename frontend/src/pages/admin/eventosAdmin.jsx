@@ -119,18 +119,27 @@ const AdminEventos = () => {
             placeholder="Descrição"
             rows="3"
           />
-          <input
-            type="text"
+          <select
             value={tipo_E}
             onChange={(e) => setTipo_E(e.target.value)}
-            placeholder="Tipo"
-          />
-          <input
-            type="text"
+          >
+            <option value="">Selecione o tipo de evento</option>
+            <option value="desporto">Desporto</option>
+            <option value="cultura">Cultura</option>
+            <option value="festividades">Festividades</option>
+            <option value="tecnologia">Tecnologia</option>
+            <option value="outro">Outro</option>
+          </select>
+
+          <select
             value={estado}
             onChange={(e) => setEstado(e.target.value)}
-            placeholder="Estado"
-          />
+          >
+            <option value="">Selecione o estado</option>
+            <option value="ativo">Ativo</option>
+            <option value="inativo">Inativo</option>
+          </select>
+
           <input
             type="date"
             value={data_E}

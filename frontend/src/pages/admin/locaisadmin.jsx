@@ -91,12 +91,16 @@ const AdminLocais = () => {
             placeholder="Descrição"
             rows="3"
           />
-          <input
-            type="text"
+          <select
             value={tipo_L}
             onChange={(e) => setTipo_L(e.target.value)}
-            placeholder="Tipo"
-          />
+          >
+            <option value="">Selecione um tipo</option>
+            <option value="patrimonio">Patrimônio</option>
+            <option value="estabelecimento">Estabelecimento</option>
+            <option value="outro">Outro</option>
+          </select>
+
           <input
             type="file"
             onChange={(e) => setMedia(e.target.files[0])}

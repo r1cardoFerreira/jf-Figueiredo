@@ -23,7 +23,9 @@ h1 {
 
 .form input[type="text"],
 .form input[type='email'],
+.form input[type='date'],
 .form textarea,
+select,
 .form input[type="file"] {
   display: block;
   font-family: "poppins";

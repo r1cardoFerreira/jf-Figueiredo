@@ -15,6 +15,7 @@ import Toponímia from "./pages/toponomia";
 import AdminEventos from "./pages/admin/eventosAdmin";
 import AdminGaleria from "./pages/admin/galeriaAdmin"; 
 import AdminLocais from "./pages/admin/locaisadmin";
+import AdminDocumentos from "./pages/admin/docAdmin"
 import Eventos from "./pages/eventos";//tirar isto depois e por este componente na home
 import Locais from "./pages/locais";
 import Galeria from "./pages/galeria";
@@ -40,6 +41,7 @@ function App() {
         <Route path="/eventosadmin" element={<AdminEventos/>}/>
         <Route path="/galeriaadmin" element={<AdminGaleria/>}/>
         <Route path="/locaisadmin" element={<AdminLocais/>}/>
+        <Route path="/docsadmin" element={<AdminDocumentos/>}/>
         <Route path="/locais" element={<Locais/>}/>
         <Route path="/eventos" element={<Eventos/>}/> 
         <Route path ="/galeria" element={<Galeria/>}/>
