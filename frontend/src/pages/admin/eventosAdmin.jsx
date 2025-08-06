@@ -13,6 +13,7 @@ const AdminEventos = () => {
   const [editingId, setEditingId] = useState(null);
 
   const API_URL = "http://localhost:3000/api/eventos";
+  const token = localStorage.getItem('token');
 
   const fetchEventos = async () => {
     try {
@@ -53,6 +54,9 @@ const AdminEventos = () => {
         {
           method: editingId ? "PATCH" : "POST",
           body: formData,
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
         }
       );
 
@@ -71,7 +75,14 @@ const AdminEventos = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+      await fetch(`${API_URL}/${id}`, 
+        { 
+          method: "DELETE",
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
+      );
       fetchEventos();
     } catch (error) {
       console.error("Erro ao apagar evento:", error);

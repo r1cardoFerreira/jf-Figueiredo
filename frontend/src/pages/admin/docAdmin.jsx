@@ -8,6 +8,7 @@ const AdminDocumentos = () => {
   const [mediaFiles, setMediaFiles] = useState([]);
 
   const API_URL = "http://localhost:3000/api/documentos";
+  const token = localStorage.getItem('token');
 
   const fetchDocumentos = async () => {
     try {
@@ -35,6 +36,9 @@ const AdminDocumentos = () => {
       await fetch(API_URL, {
         method: "POST",
         body: formData,
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
 
       setTipo_D("");
@@ -49,6 +53,9 @@ const AdminDocumentos = () => {
     try {
       await fetch(`${API_URL}/${id}`, {
         method: "DELETE",
+         headers: {
+            'Authorization': `Bearer ${token}`
+          }
       });
       fetchDocumentos();
     } catch (error) {

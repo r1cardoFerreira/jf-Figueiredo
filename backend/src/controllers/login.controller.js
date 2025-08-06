@@ -2,8 +2,8 @@ const autentService = require('../services/admin.service');
 
 async function login(req, res) {
     try {
-        const { email, password } = req.body;
-        const result = await autentService.login(email, password);
+        const { password } = req.body;
+        const result = await autentService.login( password);
         res.json(result);
     } catch (err) {
         res.status(401).json({ error: err.message });

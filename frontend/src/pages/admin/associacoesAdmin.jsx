@@ -12,6 +12,7 @@ function AssociationsPage() {
   const [editingId, setEditingId] = useState(null);
 
   const API_URL = "http://localhost:3000/api/associacoes";
+  const token = localStorage.getItem('token');
 
   const fetchAssociations = async () => {
     const res = await fetch(API_URL);
@@ -32,14 +33,23 @@ function AssociationsPage() {
     formData.append("telefone", telefone);
     if (media) formData.append("media", media);
 
-    // Se estiver editando, apaga antes de criar novamente
     if (editingId) {
-      await fetch(`${API_URL}/${editingId}`, { method: "DELETE" });
+      await fetch(`${API_URL}/${editingId}`, 
+        { 
+          method: "DELETE",
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
+      );
     }
 
     await fetch(API_URL, {
       method: "POST",
       body: formData,
+      headers: {
+          'Authorization': `Bearer ${token}`
+        }
     });
 
     resetForm();
@@ -47,7 +57,14 @@ function AssociationsPage() {
   };
 
   const handleDelete = async (id) => {
-    await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+    await fetch(`${API_URL}/${id}`, 
+      { 
+        method: "DELETE", 
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
     fetchAssociations();
   };
 

@@ -4,16 +4,16 @@ const upload = require('../middlewares/uploads');
 
 const router = express.Router();
 
-// const {authenticate} = require('../middlewares/autent.middleware');
+const {authenticate} = require('../middlewares/auth');
 
 
-router.post('/', upload.array('media', 10), locaisController.createLocal);
+router.post('/',authenticate, upload.array('media', 10), locaisController.createLocal);
 router.get('/', locaisController.getAllLocais);
 router.get('/tipo/', locaisController.getLocais);
-router.delete('/:id', locaisController.deleteLocalId);
+router.delete('/:id',authenticate, locaisController.deleteLocalId);
 // router.get('/tipo/:tipo', locaisController.getLocaisTipo);
 router.get('/:id', locaisController.getLocalId);
-router.patch('/:id', upload.array('media', 10), locaisController.updateLocal);
+router.patch('/:id',authenticate, upload.array('media', 10), locaisController.updateLocal);
 
 
 module.exports = router;

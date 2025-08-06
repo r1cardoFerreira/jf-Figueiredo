@@ -4,11 +4,11 @@ const upload = require('../middlewares/uploads');
 
 const router = express.Router();
 
-// const {authenticate} = require('../middlewares/autent.middleware');
+const {authenticate} = require('../middlewares/auth');
 
-router.post('/', upload.single('media'), associacoesController.createAssociacao);
+router.post('/',authenticate, upload.single('media'), associacoesController.createAssociacao);
 router.get('/', associacoesController.getAllAssociacao);
 router.get('/:id', associacoesController.getAssociacaoId);
-router.delete('/:id', associacoesController.deleteAssociacaoId);
+router.delete('/:id',authenticate, associacoesController.deleteAssociacaoId);
 
 module.exports = router;

@@ -4,14 +4,14 @@ const upload = require('../middlewares/uploads');
 
 const router = express.Router();
 
-// const {authenticate} = require('../middlewares/autent.middleware');
+const {authenticate} = require('../middlewares/auth');
 
 
-router.post('/',  upload.array('media', 10), eventosController.createEvento);
+router.post('/',authenticate,  upload.array('media', 10), eventosController.createEvento);
 router.get('/', eventosController.getEventos);
 router.get('/tipo/:tipo', eventosController.getEventoTipo);
 router.get('/:id', eventosController.getEventoId);
-router.patch('/:id', upload.array('media', 10), eventosController.updateEvento);
+router.patch('/:id',authenticate, upload.array('media', 10), eventosController.updateEvento);
 // router.get('/recentes', eventosController.getMaxSeisEventos);
-router.delete('/:id', eventosController.deleteEvento);
+router.delete('/:id',authenticate, eventosController.deleteEvento);
 module.exports = router;
