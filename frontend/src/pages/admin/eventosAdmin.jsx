@@ -9,7 +9,7 @@ const AdminEventos = () => {
   const [tipo_E, setTipo_E] = useState("");
   const [estado, setEstado] = useState("");
   const [data_E, setData_E] = useState("");
-  const [media, setMedia] = useState([]);
+  const [media, setMedia] = useState([]); // ✅ Corrigido: inicializar como array
   const [editingId, setEditingId] = useState(null);
 
   const API_URL = "http://localhost:3000/api/eventos";
@@ -31,7 +31,7 @@ const AdminEventos = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    const now = new Date().toISOString(); // Data de criação automática
+    const now = new Date().toISOString();
 
     formData.append("data_CE", now);
     formData.append("titulo_E", titulo_E);
@@ -39,44 +39,35 @@ const AdminEventos = () => {
     formData.append("tipo_E", tipo_E);
     formData.append("estado", estado);
     formData.append("data_E", data_E);
-    
-    if (media && media.length > 0) {
+
+    // ✅ Corrigido: garantir que media é array antes de usar forEach
+    if (Array.isArray(media) && media.length > 0) {
       media.forEach((file) => {
-      formData.append("media", file)
-    });
-}
-
-
-   try {
-    if (editingId) {
-
-      const response = await fetch(`${API_URL}/${editingId}`, {
-        method: "PATCH",
-        body: formData,
+        formData.append("media", file);
       });
-      
-      if (!response.ok) {
-        throw new Error(`Erro HTTP: ${response.status}`);
-      }
-    } else {
-
-      const response = await fetch(API_URL, {
-        method: "POST",
-        body: formData,
-      });
-      
-      if (!response.ok) {
-        throw new Error(`Erro HTTP: ${response.status}`);
-      }
     }
 
-    resetForm();
-    fetchEventos();
-    alert(editingId ? "Evento atualizado com sucesso!" : "Evento criado com sucesso!");
-  } catch (error) {
-    console.error("Erro ao submeter evento:", error);
-    alert("Erro ao submeter evento: " + error.message);
-  }};
+    try {
+      const response = await fetch(
+        editingId ? `${API_URL}/${editingId}` : API_URL,
+        {
+          method: editingId ? "PATCH" : "POST",
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Erro HTTP: ${response.status}`);
+      }
+
+      resetForm();
+      fetchEventos();
+      alert(editingId ? "Evento atualizado com sucesso!" : "Evento criado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao submeter evento:", error);
+      alert("Erro ao submeter evento: " + error.message);
+    }
+  };
 
   const handleDelete = async (id) => {
     try {
@@ -102,7 +93,7 @@ const AdminEventos = () => {
     setTipo_E("");
     setEstado("");
     setData_E("");
-    setMedia([]); //  <---
+    setMedia([]); // ✅ Corrigido: redefinir como array
     setEditingId(null);
   };
 
@@ -170,7 +161,8 @@ const AdminEventos = () => {
           <h2>Eventos Cadastrados</h2>
           {eventos.map((evento) => (
             <div key={evento.id} className="item">
-             {evento.media && Array.isArray(evento.media) && evento.media.map((m, i) => (
+              {evento.media && Array.isArray(evento.media) &&
+                evento.media.map((m, i) => (
                   <img
                     key={i}
                     src={`http://localhost:3000/uploads/${m.file}`}
