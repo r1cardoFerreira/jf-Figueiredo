@@ -13,16 +13,19 @@ async function createSugestoes_Reclamacoes(dados, files) {
             mensagem: dados.mensagem,
         }
       });
-    const dadosID = { id: sugestoes_reclamacoes.id, tipo: 'sugestoes_reclamacoes' }
+   const dadosHtml = { nome: sugestoes_reclamacoes.nome_SR, email: sugestoes_reclamacoes.email, assunto: sugestoes_reclamacoes.assunto, mensagem: sugestoes_reclamacoes.mensagem}
   
-    const anexos = files.map(file =>({
+
+    const anexos = (files ?? []).map(file => ({
         filename: file.originalname,
         path: path.join(__dirname, '..', '..', 'uploads', file.filename)
     }));
+
     
     await email.enviarEmail({
         subject:sugestoes_reclamacoes.assunto, 
         text:sugestoes_reclamacoes.mensagem,
+        html: email.gerarHtmlEmail(dadosHtml),
         attachments:anexos
     }) 
 
