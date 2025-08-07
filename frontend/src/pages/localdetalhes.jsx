@@ -27,15 +27,15 @@ const LocalDetalhes = () => {
       return(
         <div>
             <Navbar/>
-            <div className="Local-container">
-                <img  
-                src={
-                    local.media.file
-                    ? `http://localhost:3000/uploads/${local.media.file}`
-                    : `http://localhost:3000/uploads/${local.media}`
-        }
-        alt={`Imagem de ${local.nome_L}`}
-        className="detalhes-imagem" />
+            <div className="local-container">
+                <img
+                  src={`http://localhost:3000/uploads/${local.media[0].file}`}
+                  alt={`Imagem de ${local.nome_L}`}
+                />
+                <div className="local-titulo-container">
+                    <p className="local-tipo">{local.tipo_L}</p>
+                    <span className="local-titulo">{local.nome_L}</span>
+                </div>
             </div>
         </div>
       )

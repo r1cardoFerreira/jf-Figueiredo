@@ -66,5 +66,15 @@ async function updateLocal(dadosAtualizados, id, files) {
     return localAtualizado
 }
 
+async function getLocalId(id) {
+  return prisma.locais.findUnique({
+    where: { id },
+    include: {
+      media: true,
+    },
+  });
+}
 
-module.exports = {getAllLocais, createLocal, deleteLocalId, /*getLocaisTipo,*/ updateLocal, getLocais};
+
+
+module.exports = {getAllLocais, createLocal, deleteLocalId, /*getLocaisTipo,*/ updateLocal, getLocais, getLocalId};
