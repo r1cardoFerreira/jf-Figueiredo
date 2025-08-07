@@ -1,0 +1,29 @@
+.Local-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  height: 500px;
+}
+.local-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* centraliza e preenche */
+  object-position: center; 
+}
+.local-titulo-container {
+  background-color: #121ca7;
+  color: #ffffff;
+  padding: 48px 24px;
+  width: 80%;
+  text-align: left;
+  margin-top: -70px; /* sobrepor um pouco a imagem */
+}
+.local-titulo{
+    font-size: 24px;
+}
+.local-tipo {
+    font-size: 24px;
+}

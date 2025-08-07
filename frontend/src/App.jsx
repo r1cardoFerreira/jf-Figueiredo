@@ -18,10 +18,9 @@ import AdminLocais from "./pages/admin/locaisadmin";
 import AdminDocumentos from "./pages/admin/docAdmin"
 import Eventos from "./pages/eventos";//tirar isto depois e por este componente na home
 import Locais from "./pages/locais";
+import LocalDetalhes from "./pages/localdetalhes";
 import Galeria from "./pages/galeria";
 import EspacoCidadao from "./pages/espaco_cidadao";
-import Locais from "./pages/locais";
-
 
 function App() {
   return (
@@ -48,6 +47,7 @@ function App() {
         <Route path ="/galeria" element={<Galeria/>}/>
         <Route path ="/espaco-cidadao" element={<EspacoCidadao/>}/>
         <Route path="/visitar" element={<Locais/>}/>
+        <Route path="/localdetalhes/:id" element={<LocalDetalhes/>}/>
 
       </Routes>
     </BrowserRouter>
