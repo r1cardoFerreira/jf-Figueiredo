@@ -47,16 +47,32 @@ const Documentos = () => {
               <ul className="documentos-lista">
                 {docs.map((doc) => (
                   <li key={doc.id} className="documento-item">
-                    <span>{doc.nome}</span>
-                    <a
-                      href={`http://localhost:3000/uploads/${doc.ficheiro}`}
-                      download
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-download"
-                    >
-                      Baixar
-                    </a>
+                    <p>Data: {new Date(doc.data_CD).toLocaleDateString()}</p>
+                   {doc.media && doc.media.length > 0 ? (
+                      doc.media.map((file) => {
+                        const nomeOriginal = decodeURIComponent(
+                          file.file.split("-").slice(1).join("-").replace(/_/g, " ")
+                        );
+
+                        return (
+                          <div key={file.id}>
+                            <span>{nomeOriginal}</span>
+                            <a
+                              href={`http://localhost:3000/uploads/${file.file}`}
+                              download
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn-download"
+                            >
+                              Baixar
+                            </a>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <p>Sem ficheiros.</p>
+                    )}
+
                   </li>
                 ))}
               </ul>
