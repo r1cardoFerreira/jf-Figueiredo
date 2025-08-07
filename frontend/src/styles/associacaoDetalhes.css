@@ -23,7 +23,7 @@
 .detalhes-nome {
   font-size: 2rem;
   font-weight: bold;
-margin: auto;
+  margin: auto;
   white-space: nowrap;
 }
 .detalhes-subtitulo{

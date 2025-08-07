@@ -53,7 +53,7 @@ const Navbar = () => {
           Autarquia ▾
           {openDropdown === 'autarquia' && (
             <div className="dropdown">
-              <a href="#Visitar">Documentos</a>
+              <a href="/documentos">Documentos</a>
               <a href="/toponimia">Toponímia</a>
             </div>
           )}

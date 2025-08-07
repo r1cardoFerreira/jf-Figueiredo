@@ -1,0 +1,43 @@
+.tipo-titulo {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #121ca7;
+  border-bottom: 2px solid #121ca7;
+  padding-bottom: 5px;
+}
+
+.documentos-container {
+  padding: 40px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.documentos-lista {
+  list-style: none;
+  padding: 0;
+}
+
+.documento-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f3f3f3;
+  padding: 15px 20px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+.btn-download {
+  background-color: #121ca7;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn-download:hover {
+  background-color: #0f1685;
+}

@@ -1,22 +1,72 @@
-.footer-container{
-    background-color: #121ca7;
-    display: flex;
-    justify-content: space-around;
-    position: relative;
-    width: 100%;
+.footer-container {
+  background-color: #121ca7;
+  display: flex;
+  flex-wrap: wrap; /* permite quebrar linha */
+  justify-content: space-around;
+  padding: 20px;
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
-.footer-title{
-    font-size: 24px;
-    font-weight: bold;
-    color: #fff;
+
+.footer-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-align: justify;
+  justify-content: space-around;
 }
-.footer-text{
-    font-size:18px;
-    color: #fff;
-    line-height: 2.5rem;
+
+.footer-text {
+  font-size: 18px;
+  color: #fff;
+  line-height: 2.5rem;
+  text-align: justify;
+  max-width: 400px;
 }
+
 .map {
   width: 400px;
-  height: 300px !important;
-  margin:24px 0px;
+  height: 300px;
+  margin: 24px 0px;
+}
+
+/* RESPONSIVO: telas menores que 768px (ex: tablets e telemóveis) */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .footer-title {
+    font-size: 20px;
+  }
+
+  .footer-text {
+    font-size: 16px;
+    line-height: 2rem;
+    padding: 0 10px;
+  }
+
+  .map {
+    width: 90%;
+    height: 250px;
+  }
+}
+
+/* EXTRA PEQUENAS TELAS: menos de 480px */
+@media (max-width: 480px) {
+  .footer-title {
+    font-size: 18px;
+  }
+
+  .footer-text {
+    font-size: 15px;
+  }
+
+  .map {
+    height: 200px;
+  }
 }
