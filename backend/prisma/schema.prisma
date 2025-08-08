@@ -11,7 +11,7 @@ model eventos {
   id         Int        @id @default(autoincrement())
   data_CE    DateTime   @default(now()) @db.Timestamp(6)
   titulo_E   String     @db.VarChar(255)
-  texto_E    String?    @db.VarChar(255)
+  texto_E    String?    @db.Text
   tipo_E     tipo_E     @default(outro)
   data_E     DateTime?
   estado     estado     @default(ativo)
@@ -40,7 +40,7 @@ model documentos {
 model locais {
   id          Int       @id @default(autoincrement())
   nome_L      String    @db.VarChar(255)
-  texto_L     String?    @db.VarChar(255)
+  texto_L     String?   @db.Text
   latitude    Float?
   longitude   Float?
   tipo_L      tipo_L      @default(outro)
@@ -62,7 +62,7 @@ model sugestoes_reclamacoes {
   nome_SR    String     @db.VarChar(255)
   email      String     @db.VarChar(255)
   assunto    String?    @db.VarChar(255)
-  mensagem   String?    @db.VarChar(255)
+  mensagem   String?    @db.Text
   data_CSR   DateTime   @default(now()) @db.Timestamp(6)
 
   media      media[]   @relation("SugestoesReclamacoesMedia")     
