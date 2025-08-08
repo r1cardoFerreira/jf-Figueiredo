@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/navbar.jsx";
 import Footer from "../components/footer.jsx";
 import "../styles/eventos.css"
+import { Link } from "react-router-dom";
 
 const isImageFile = (filename) => {
   return /\.(jpg|jpeg|png|webp|gif)$/i.test(filename);
@@ -41,17 +42,19 @@ const Eventos = () => {
     <div className="eventos-grid">
       {eventos.map((evento) => (
         <div key={evento.id} className="evento-card">
-          {evento.media && evento.media.length > 0 && isImageFile(evento.media[0].file) && (
-            <img
-              src={`http://localhost:3000/uploads/${evento.media[0].file}`}
-              alt={`Imagem do evento`}
-            />
-          )}
-          <div className="evento-card-content">
-            <p className="evento-data">{new Date(evento.data_E).toLocaleDateString()}</p>
-            <h3 className="evento-titulo">{evento.titulo_E}</h3>
-            <p className="evento-categoria">{evento.categoria || "Desporto"}</p>
-          </div>
+          <Link key={evento.id} to={`/eventosdetalhes/${evento.id}`}>
+            {evento.media && evento.media.length > 0 && isImageFile(evento.media[0].file) && (
+              <img
+                src={`http://localhost:3000/uploads/${evento.media[0].file}`}
+                alt={`Imagem do evento`}
+              />
+            )}
+            <div className="evento-card-content">
+              <p className="evento-data">{new Date(evento.data_E).toLocaleDateString()}</p>
+              <h3 className="evento-titulo">{evento.titulo_E}</h3>
+              <p className="evento-categoria">{evento.categoria || "Desporto"}</p>
+            </div>
+          </Link>
         </div>
       ))}
     </div>

@@ -26,6 +26,16 @@
   display: flex;
   flex-direction: column;
 }
+.evento-card:hover {
+  transform: scale(1.05) ;
+  cursor: pointer;
+}
+.evento-card::after{
+  color:#000 ;
+}
+.evento-card a {
+  text-decoration: none;
+}
 
 .evento-card img {
   width: 100%;

@@ -9,17 +9,27 @@
 }
 .local-container img {
   width: 80%;
-  height: 500px;
+  height: 400px;
   object-fit: cover;  /*centraliza e preenche */
   object-position: center; 
 }
 .local-titulo-container {
-  background-color: #121ca7;
+  background-color: #121ca7 ;
+  opacity:0.95;
   color: #ffffff;
-  padding: 38px 24px;
+  padding:15px;
   width: 60%;
   text-align: left;
   margin-top: -80px; /* sobrepor um pouco a imagem */
+}
+
+.local-texto{
+  width: 80%;
+  color: #5f5f5f;
+  margin-top: 24px;
+  font-size: 1.2em;
+  line-height: 2rem;
+  text-align: justify;
 }
 .local-titulo{
     font-size: 24px;
@@ -28,4 +38,6 @@
 .local-tipo {
     font-size: 16px;
     font-weight: 400;
+    justify-content: space-between;
+    display: flex;
 }

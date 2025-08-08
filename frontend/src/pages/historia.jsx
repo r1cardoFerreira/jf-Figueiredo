@@ -8,14 +8,14 @@ const Historia =() =>{
     return(
         <div>
             <Navbar/>
-                 <div class="historia-container">
+                 <div className="historia-container">
                     <img src={sedeFoto} alt="Freguesia de Figueiredo" class="historia-imagem"/>
 
-                    <div class="historia-titulo">
+                    <div className="historia-titulo">
                       História de Figueiredo
                     </div>
 
-                    <p class="historia-texto">
+                    <p className="historia-texto">
                       Figueiredo tem a sua origem perdida na névoa dos tempos, mas o mais antigo documento que a esta freguesia faz 
                       referência data de 1113 e é de D. Paio Mendes e sua esposa D. Gontina, os quais doaram bens que lá possuíam à 
                       Sé de Braga. Através deste manuscrito descobriram-se dados sobre a toponímia local, tais como “Paredes” e 
