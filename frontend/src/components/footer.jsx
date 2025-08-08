@@ -16,9 +16,16 @@ const Footer = () => {
                 </p>
             </div>
             <div className="footer-item">
-                      <p className="footer-title">Redes Sociais</p>
-                      <p><a className="footer-text"href='https://www.facebook.com/p/Junta-de-Freguesia-de-Figueiredo-100048890241608/?locale=pt_PT'>Facebook</a></p>
-                      <p> Instagram:</p>
+                <p className="footer-title">Redes Sociais</p>
+                <p><a 
+                className="footer-text"
+                href='https://www.facebook.com/p/Junta-de-Freguesia-de-Figueiredo-100048890241608/?locale=pt_PT' 
+                target="_blank">
+                Facebook</a></p>
+                <p> <a 
+                className="footer-text" href="https://www.instagram.com/freguesia_de_figueiredo/" 
+                target="_blank">
+                Instagram</a></p>
             </div>
             <div className="footer-item">
                 <iframe

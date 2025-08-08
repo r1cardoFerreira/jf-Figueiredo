@@ -87,7 +87,6 @@ const Sugestao = () => {
           </button>
         </form>
       </div>
-      <Footer />
     </div>
   );
 };

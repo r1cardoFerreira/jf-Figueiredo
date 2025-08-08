@@ -56,7 +56,7 @@ const Documentos = () => {
 
                         return (
                           <div key={file.id}>
-                            <span>{nomeOriginal}</span>
+                            <span className="NomeOriginal">{nomeOriginal}</span>
                             <a
                               href={`http://localhost:3000/uploads/${file.file}`}
                               download

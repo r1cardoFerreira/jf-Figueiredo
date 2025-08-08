@@ -22,6 +22,7 @@ import LocalDetalhes from "./pages/localdetalhes";
 import Galeria from "./pages/galeria";
 import EspacoCidadao from "./pages/espaco_cidadao";
 import Documentos from "./pages/docs";
+import Contactos from "./pages/contactos";
 
 function App() {
   return (
@@ -50,7 +51,7 @@ function App() {
         <Route path="/visitar" element={<Locais/>}/>
         <Route path="/localdetalhes/:id" element={<LocalDetalhes/>}/>
         <Route path="/documentos" element={<Documentos/>}/>
-
+        <Route path="/contactos" element={<Contactos/>}/>
       </Routes>
     </BrowserRouter>
   );

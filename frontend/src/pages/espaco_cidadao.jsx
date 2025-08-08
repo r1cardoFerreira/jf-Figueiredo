@@ -30,6 +30,7 @@ const EspacoCidadao = () => {
       </ul>
       <p className="espacoCidadao-contactos">Contactos:</p>
       <p>Telefone: 253 68 56 06</p>
+      <p>Email: espacocidadaofigueiredo@gmail.com</p>
       <p>
         Para mais informações, clique{" "}
         <a 
@@ -39,7 +40,7 @@ const EspacoCidadao = () => {
             rel="noopener noreferrer"
         >
           aqui
-        </a>.
+        </a>
       </p>
     </div>
   );

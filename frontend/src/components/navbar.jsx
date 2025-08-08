@@ -39,14 +39,14 @@ const Navbar = () => {
             <div className="dropdown">
               <Link to="/historia">História</Link>
               <Link to="/heraldica">Heráldica</Link>
-              <a href="#Visitar">Visitar</a>
+              <a href="/visitar">Visitar</a>
               <Link to="/galeria">Galeria</Link>
               <Link to="/associacoes">Associativismo</Link>
             </div>
           )}
         </div>
 
-        <a href="#eventos">Eventos</a>
+        <Link to="/#eventos">Eventos</Link>
         <Link to="/corposocial">Corpo Social</Link>
 
         <div className="nav-item" onClick={() => toggleDropdown('autarquia')}>
@@ -59,7 +59,7 @@ const Navbar = () => {
           )}
         </div>
 
-        <a className="right" href="#contactos">Contactos</a>
+        <Link className="right" to="/contactos">Contactos</Link>
       </nav>
       <Outlet />
     </header>

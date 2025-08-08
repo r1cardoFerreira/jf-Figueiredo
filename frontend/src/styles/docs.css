@@ -32,6 +32,7 @@
 .btn-download {
   background-color: #121ca7;
   color: #fff;
+  margin: 13px;
   padding: 8px 16px;
   border-radius: 5px;
   text-decoration: none;

@@ -2,6 +2,8 @@ import React from "react";
 import Navbar from "../components/navbar";
 import Eventos from "./eventos";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Footer from "../components/footer";
 import imgIgreja from "../../public/Igreja_de_Figueiredo.jpg"
 import imgCasa from "../../public/House_in_Figueiredo.jpg"
@@ -15,7 +17,17 @@ const items = [
   { icon: "🔍", label: "Espaco Cidadao", link: "/espaco-cidadao" },
 ];
 const HomePage = () => {
-    
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
+
 return(
 <div>
     <Navbar/>
@@ -32,29 +44,29 @@ return(
         <div className="menu-item">
           <Link to={"/historia"}>
             <div className="menu-icon">📘</div>
-            <div className="menu-label">Historia</div>  
+            <div className="menu-label">História</div>  
           </Link>
         </div>
         <div className="menu-item">
           <Link to={"/Sugestao"}>
             <div className="menu-icon">🤝</div>
-            <div className="menu-label">Sugestoes</div>  
+            <div className="menu-label">Sugestões</div>  
           </Link>
         </div>
         <div className="menu-item">
           <Link to={"/associacoes"}>
             <div className="menu-icon">👥</div>
-            <div className="menu-label">Associacoes</div>  
+            <div className="menu-label">Associações</div>  
           </Link>
         </div>
         <div className="menu-item">
           <Link to={"/espaco-cidadao"}>
             <div className="menu-icon">🔍</div>
-            <div className="menu-label">Espaco Cidadao</div>  
+            <div className="menu-label">Espaço Cidadão</div>  
           </Link>
         </div>
     </div>
-    <section id="Eventos">
+    <section id="eventos">
       <h1 className="IdTittle">Eventos</h1>
       <Eventos/>
     </section>
