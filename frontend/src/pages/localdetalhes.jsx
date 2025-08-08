@@ -36,6 +36,9 @@ const LocalDetalhes = () => {
                     <p className="local-tipo">{local.tipo_L}</p>
                     <span className="local-titulo">{local.nome_L}</span>
                 </div>
+                <div className="local-texto">
+                  {local.texto_L}
+                </div>
             </div>
         </div>
       )
