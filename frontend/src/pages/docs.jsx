@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/navbar.jsx";
 import Footer from "../components/footer.jsx";
 import "../styles/docs.css";
+import { formatarEnum_D } from "../utils/formatacoes";
+
 
 const Documentos = () => {
   const [documentos, setDocumentos] = useState([]);
   const [agrupadosPorTipo, setAgrupadosPorTipo] = useState({});
-
+  const [gruposAbertos, setGruposAbertos] = useState({}); 
   useEffect(() => {
     fetch("http://localhost:3000/api/documentos")
       .then((res) => {
@@ -23,13 +25,27 @@ const Documentos = () => {
   const agruparPorTipo = (docs) => {
     const agrupados = {};
     docs.forEach((doc) => {
-      const tipo = doc.tipo || "Outros";
+      const tipo = formatarEnum_D(doc.tipo_D);
       if (!agrupados[tipo]) {
         agrupados[tipo] = [];
       }
       agrupados[tipo].push(doc);
     });
     setAgrupadosPorTipo(agrupados);
+
+    
+    const estadoInicial = {};
+    Object.keys(agrupados).forEach((tipo) => {
+      estadoInicial[tipo] = false;
+    });
+    setGruposAbertos(estadoInicial);
+  };
+
+  const toggleGrupo = (tipo) => {
+    setGruposAbertos((prev) => ({
+      ...prev,
+      [tipo]: !prev[tipo],
+    }));
   };
 
   return (
@@ -43,39 +59,50 @@ const Documentos = () => {
         ) : (
           Object.entries(agrupadosPorTipo).map(([tipo, docs]) => (
             <div key={tipo} className="documento-grupo">
-              <h3 className="tipo-titulo">{tipo}</h3>
-              <ul className="documentos-lista">
-                {docs.map((doc) => (
-                  <li key={doc.id} className="documento-item">
-                    <p>Data: {new Date(doc.data_CD).toLocaleDateString()}</p>
-                   {doc.media && doc.media.length > 0 ? (
-                      doc.media.map((file) => {
-                        const nomeOriginal = decodeURIComponent(
-                          file.file.split("-").slice(1).join("-").replace(/_/g, " ")
-                        );
+              <h3
+                className="tipo-titulo"
+                onClick={() => toggleGrupo(tipo)}
+                style={{ cursor: "pointer" }}
+              >
+                {tipo} {gruposAbertos[tipo] ? "▲" : "▼"}
+              </h3>
 
-                        return (
-                          <div key={file.id}>
-                            <span className="NomeOriginal">{nomeOriginal}</span>
-                            <a
-                              href={`http://localhost:3000/uploads/${file.file}`}
-                              download
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="btn-download"
-                            >
-                              Baixar
-                            </a>
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <p>Sem ficheiros.</p>
-                    )}
+              {gruposAbertos[tipo] && (
+                <ul className="documentos-lista">
+                  {docs.map((doc) => (
+                    <li key={doc.id} className="documento-item">
+                      <p>Data: {new Date(doc.data_CD).toLocaleDateString()}</p>
+                      {doc.media && doc.media.length > 0 ? (
+                        doc.media.map((file) => {
+                          const nomeOriginal = decodeURIComponent(
+                            file.file
+                              .split("-")
+                              .slice(1)
+                              .join("-")
+                          );
 
-                  </li>
-                ))}
-              </ul>
+                          return (
+                            <div key={file.id}>
+                              <span className="NomeOriginal">{nomeOriginal}</span>
+                              <a
+                                href={`http://localhost:3000/uploads/${file.file}`}
+                                download
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-download"
+                              >
+                                Baixar
+                              </a>
+                            </div>
+                          );
+                        })
+                      ) : (
+                        <p>Sem ficheiros.</p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))
         )}

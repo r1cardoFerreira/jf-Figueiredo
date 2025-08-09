@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AdminNavbar from "../../components/admin/navbar_admin";
 import "../../styles/admin/galeria_admin.css";
+import { formatarEnum_D } from "../../utils/formatacoes";
 
 const AdminDocumentos = () => {
   const [documentos, setDocumentos] = useState([]);
@@ -83,6 +84,7 @@ const AdminDocumentos = () => {
             <option value="editais">Editais</option>
             <option value="regulamentos">Regulamentos</option>
             <option value="relatorios_de_contas">Relatórios de contas</option>
+            <option value="outro">Outro</option>
           </select>
           <input
                 type="file"
@@ -98,7 +100,7 @@ const AdminDocumentos = () => {
           <h2>Documentos</h2>
           {documentos.map((doc) => (
             <div key={doc.id} className="galeria-item">
-              <h3>{doc.tipo_D}</h3>
+              <h3>{formatarEnum_D (doc.tipo_D)}</h3>
               <p>Data: {new Date(doc.data_CD).toLocaleDateString()}</p>
               <div className="thumbs">
                 {doc.media.map((file) => {
