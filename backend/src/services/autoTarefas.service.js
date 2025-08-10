@@ -26,7 +26,7 @@ async function delSRAntigos()
 
 async function delPatchEventos() {
   const dataLimiteDel = new Date(Date.now() - 60 * 24 * 60 * 60 * 1000); 
-  const dataLimitePatch = new Date(Date.now); 
+  const dataLimitePatch = new Date(); 
 
   const eventosDelPatch = await prisma.eventos.findMany({
     where: {
@@ -42,6 +42,7 @@ async function delPatchEventos() {
 
       if (evento.data_E < dataLimiteDel) {
         await deleteEventoId(evento.id); 
+        continue;
       } 
       if (evento.estado === 'ativo') {
         await updateEvento({ estado: 'inativo' }, evento.id); 
@@ -61,14 +62,14 @@ async function delDocumentos()
             OR: [
                 {
                     AND: [
-                        { tipo: { in: ['atas', 'plano_de_atividades', 'avisos', 'editais'] } },
-                        { createdAt: { lt: umMes } }
+                        { tipo_D: { in: ['atas', 'plano_de_atividades', 'avisos', 'editais'] } },
+                        { data_CD: { lt: umMes } }
                     ]
                 },
                 {
                     AND: [
-                        { tipo: { in: ['regulamentos', 'relatorios_de_contas','outro'] } },
-                        { createdAt: { lt: seisMeses } }
+                        { tipo_D: { in: ['regulamentos', 'relatorios_de_contas','outro'] } },
+                        { data_CD: { lt: seisMeses } }
                     ]
                 }
             ]
