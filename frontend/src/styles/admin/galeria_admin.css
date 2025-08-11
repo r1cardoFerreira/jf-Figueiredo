@@ -12,7 +12,6 @@
 input[type="text"],
 input[type="file"]{
   display: block;
-  margin-bottom: 10px;
   width: 100%;
   padding: 10px;
 }
@@ -55,4 +54,12 @@ button {
   height: 100px;
   border-radius: 4px;
   object-fit: cover;
+}
+
+.filtroStyle {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
 }

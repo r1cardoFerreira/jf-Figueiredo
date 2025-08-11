@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AdminNavbar from "../../components/admin/navbar_admin";
 import "../../styles/admin/eventos_admin.css";
 
@@ -9,11 +9,19 @@ const AdminEventos = () => {
   const [tipo_E, setTipo_E] = useState("");
   const [estado, setEstado] = useState("");
   const [data_E, setData_E] = useState("");
-  const [media, setMedia] = useState([]); // ✅ Corrigido: inicializar como array
+  const [media, setMedia] = useState([]);
   const [editingId, setEditingId] = useState(null);
 
+  // Filtros
+  const [filtroTitulo, setFiltroTitulo] = useState("");
+  const [filtroTipo, setFiltroTipo] = useState("");
+  const [dataInicial, setDataInicial] = useState("");
+  const [dataFinal, setDataFinal] = useState("");
+
   const API_URL = "http://localhost:3000/api/eventos";
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
+
+  const fileInputRef = useRef(null);
 
   const fetchEventos = async () => {
     try {
@@ -41,7 +49,6 @@ const AdminEventos = () => {
     formData.append("estado", estado);
     formData.append("data_E", data_E);
 
-    // ✅ Corrigido: garantir que media é array antes de usar forEach
     if (Array.isArray(media) && media.length > 0) {
       media.forEach((file) => {
         formData.append("media", file);
@@ -55,8 +62,8 @@ const AdminEventos = () => {
           method: editingId ? "PATCH" : "POST",
           body: formData,
           headers: {
-            'Authorization': `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 
@@ -75,14 +82,12 @@ const AdminEventos = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`${API_URL}/${id}`, 
-        { 
-          method: "DELETE",
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        }
-      );
+      await fetch(`${API_URL}/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       fetchEventos();
     } catch (error) {
       console.error("Erro ao apagar evento:", error);
@@ -104,9 +109,34 @@ const AdminEventos = () => {
     setTipo_E("");
     setEstado("");
     setData_E("");
-    setMedia([]); // ✅ Corrigido: redefinir como array
+    setMedia([]);
     setEditingId(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = null;
+    }
   };
+
+  const eventosFiltrados = eventos.filter((evento) => {
+    const dataEvento = new Date(evento.data_E).toISOString().split("T")[0];
+
+    if (filtroTitulo && !evento.titulo_E.toLowerCase().includes(filtroTitulo.toLowerCase())) {
+      return false;
+    }
+
+    if (filtroTipo && filtroTipo !== "" && evento.tipo_E !== filtroTipo) {
+      return false;
+    }
+
+    if (dataInicial && dataEvento < dataInicial) {
+      return false;
+    }
+
+    if (dataFinal && dataEvento > dataFinal) {
+      return false;
+    }
+
+    return true;
+  });
 
   return (
     <div>
@@ -130,10 +160,7 @@ const AdminEventos = () => {
             placeholder="Descrição"
             rows="3"
           />
-          <select
-            value={tipo_E}
-            onChange={(e) => setTipo_E(e.target.value)}
-          >
+          <select value={tipo_E} onChange={(e) => setTipo_E(e.target.value)}>
             <option value="">Selecione o tipo de evento</option>
             <option value="desporto">Desporto</option>
             <option value="cultura">Cultura</option>
@@ -142,10 +169,7 @@ const AdminEventos = () => {
             <option value="outro">Outro</option>
           </select>
 
-          <select
-            value={estado}
-            onChange={(e) => setEstado(e.target.value)}
-          >
+          <select value={estado} onChange={(e) => setEstado(e.target.value)}>
             <option value="">Selecione o estado</option>
             <option value="ativo">Ativo</option>
             <option value="inativo">Inativo</option>
@@ -159,6 +183,7 @@ const AdminEventos = () => {
           />
           <input
             type="file"
+            ref={fileInputRef}
             multiple
             onChange={(e) => {
               const newFiles = Array.from(e.target.files);
@@ -177,34 +202,88 @@ const AdminEventos = () => {
           )}
         </form>
 
-        <div className="list">
-          <h2>Eventos Cadastrados</h2>
-          {eventos.map((evento) => (
-            <div key={evento.id} className="item">
-              {evento.media && Array.isArray(evento.media) &&
-                evento.media.map((m, i) => (
-                  <img
-                    key={i}
-                    src={`http://localhost:3000/uploads/${m.file}`}
-                    alt={`Imagem ${i + 1}`}
-                    className="thumb"
-                  />
-                ))}
-              <h3>{evento.titulo_E}</h3>
-              <p><strong>Data Criação:</strong> {evento.data_CE}</p>
-              <p><strong>Data Evento:</strong> {evento.data_E}</p>
-              <p><strong>Tipo:</strong> {evento.tipo_E}</p>
-              <p><strong>Estado:</strong> {evento.estado}</p>
-              <p>{evento.texto_E}</p>
+        <div className="filtros">
+              <div className="linha-superior">
+                <input
+                  type="text"
+                  placeholder="Pesquisar por título"
+                  value={filtroTitulo}
+                  onChange={(e) => setFiltroTitulo(e.target.value)}
+                />
+                <select
+                  value={filtroTipo}
+                  onChange={(e) => setFiltroTipo(e.target.value)}
+                >
+                  <option value="">Todos</option>
+                  <option value="desporto">Desporto</option>
+                  <option value="cultura">Cultura</option>
+                  <option value="festividades">Festividades</option>
+                  <option value="tecnologia">Tecnologia</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+              <div className="linha-inferior">
+                <label>Data inicial:</label>
+                <input
+                  type="date"
+                  value={dataInicial}
+                  onChange={(e) => setDataInicial(e.target.value)}
+                />
+                <label>Data final:</label>
+                <input
+                  type="date"
+                  value={dataFinal}
+                  onChange={(e) => setDataFinal(e.target.value)}
+                />
+              </div>
 
-              <button className="criar-editar-button" onClick={() => handleEdit(evento)}>
-                Editar
-              </button>
-              <button onClick={() => handleDelete(evento.id)} className="delete-btn">
-                Apagar
-              </button>
-            </div>
-          ))}
+          {eventosFiltrados.length === 0 ? (
+            <p>Nenhum evento encontrado.</p>
+          ) : (
+            eventosFiltrados.map((evento) => (
+              <div key={evento.id} className="item">
+                {evento.media &&
+                  Array.isArray(evento.media) &&
+                  evento.media.map((m, i) => (
+                    <img
+                      key={i}
+                      src={`http://localhost:3000/uploads/${m.file}`}
+                      alt={`Imagem ${i + 1}`}
+                      className="thumb"
+                    />
+                  ))}
+                <h3>{evento.titulo_E}</h3>
+                <p>
+                  <strong>Data Criação:</strong>{" "}
+                  {new Date(evento.data_CE).toLocaleDateString()}
+                </p>
+                <p>
+                  <strong>Data Evento:</strong>{" "}
+                  {new Date(evento.data_E).toLocaleDateString()}
+                </p>
+                <p>
+                  <strong>Tipo:</strong> {evento.tipo_E}
+                </p>
+                <p>
+                  <strong>Estado:</strong> {evento.estado}
+                </p>
+                <p>{evento.texto_E}</p>
+
+                <button
+                  className="criar-editar-button"
+                  onClick={() => handleEdit(evento)}
+                >
+                  Editar
+                </button>
+                <button
+                  onClick={() => handleDelete(evento.id)}
+                  className="delete-btn"
+                >
+                  Apagar
+                </button>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>

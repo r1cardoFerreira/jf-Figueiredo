@@ -1,0 +1,79 @@
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+  align-items: center;
+  /* Mantemos o flex-wrap para quebrar linha */
+}
+
+.filtros .linha-superior {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+  align-items: center;
+}
+
+.filtros .linha-inferior {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-top: 10px;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+}
+
+.filtros input[type="text"],
+.filtros select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 150px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.filtros select {
+  width: 120px; /* largura menor para filtro tipo */
+  padding: 8px 8px;
+}
+
+.filtros input[type="date"] {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 140px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.filtros input[type="text"]:focus,
+.filtros select:focus,
+.filtros input[type="date"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Para telas pequenas */
+@media (max-width: 480px) {
+  .filtros {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filtros .linha-superior,
+  .filtros .linha-inferior {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .filtros input[type="text"],
+  .filtros select,
+  .filtros input[type="date"] {
+    width: 100%;
+    min-width: auto;
+  }
+}

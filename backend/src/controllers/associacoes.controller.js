@@ -43,10 +43,30 @@ async function deleteAssociacaoId(req, res) {
   }
 }
 
+async function updateAssociacao(req, res){
+    const id = Number(req.params.id);
+    
+    if (!req.body || Object.keys(req.body).length === 0) {
+        return res.status(400).json({ 
+            error: 'Nenhum dado fornecido para atualização' 
+        });
+    }
+    
+    const dadosAtualizados = req.body;
+    
+    try {
+        const assocAtualizado = await associacaoService.updateAssociacao(dadosAtualizados, id , req.files);
+        res.json(assocAtualizado);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error: 'Erro ao atualizar a Associacao'});
+    }
+}
 
 module.exports = {
   createAssociacao,
   getAllAssociacao,
   getAssociacaoId,
-  deleteAssociacaoId
+  deleteAssociacaoId,
+  updateAssociacao,
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AdminNavbar from "../../components/admin/navbar_admin";
 import "../../styles/admin/associacoes_admin.css";
 
@@ -10,6 +10,10 @@ function AssociationsPage() {
   const [texto_A, setTexto_A] = useState("");
   const [media, setMedia] = useState(null);
   const [editingId, setEditingId] = useState(null);
+
+  const [filtroNome, setFiltroNome] = useState("");
+
+  const fileInputRef = useRef(null); // <-- ref para limpar input de ficheiros
 
   const API_URL = "http://localhost:3000/api/associacoes";
   const token = localStorage.getItem('token');
@@ -34,37 +38,34 @@ function AssociationsPage() {
     if (media) formData.append("media", media);
 
     if (editingId) {
-      await fetch(`${API_URL}/${editingId}`, 
-        { 
-          method: "DELETE",
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        }
-      );
+      await fetch(`${API_URL}/${editingId}`, {
+        method: "PATCH", 
+        body: formData,
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+    } else {
+      await fetch(API_URL, {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
     }
-
-    await fetch(API_URL, {
-      method: "POST",
-      body: formData,
-      headers: {
-          'Authorization': `Bearer ${token}`
-        }
-    });
 
     resetForm();
     fetchAssociations();
   };
 
   const handleDelete = async (id) => {
-    await fetch(`${API_URL}/${id}`, 
-      { 
-        method: "DELETE", 
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+    await fetch(`${API_URL}/${id}`, {
+      method: "DELETE",
+      headers: {
+        'Authorization': `Bearer ${token}`,
       }
-    );
+    });
     fetchAssociations();
   };
 
@@ -83,82 +84,106 @@ function AssociationsPage() {
     setTexto_A("");
     setMedia(null);
     setEditingId(null);
+
+    
+    if (fileInputRef.current) {
+      fileInputRef.current.value = null;
+    }
   };
+
+  const associationsFiltradas = associations.filter((assoc) =>
+    assoc.nome_A.toLowerCase().includes(filtroNome.toLowerCase())
+  );
 
   return (
     <div>
       <AdminNavbar/>
-    <div className="container">
-      <h1>Gestão de Associações</h1>
+      <div className="container">
+        <h1>Gestão de Associações</h1>
 
-      <form onSubmit={handleSubmit} className="form">
-        <h2>{editingId ? "Editar Associação" : "Nova Associação"}</h2>
-        <input
-          type="text"
-          value={nome_A}
-          onChange={(e) => setNome_A(e.target.value)}
-          placeholder="Nome"
-          required
-        />
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-        />
-        <input
-          type="text"
-          value={telefone}
-          onChange={(e) => setTelefone(e.target.value)}
-          placeholder="Telefone"
-        />
-        <textarea
-          value={texto_A}
-          onChange={(e) => setTexto_A(e.target.value)}
-          placeholder="Texto descritivo"
-          rows="3"
-        />
-        <input
-          type="file"
-          onChange={(e) => setMedia(e.target.files[0])}
-          accept="image/*"
-        />
-        <button className="criar-editar-button"type="submit">{editingId ? "Atualizar" : "Criar"}</button>
-        {editingId && (
-          <button type="button" className="delete-btn" onClick={resetForm}>
-            Cancelar
+        <form onSubmit={handleSubmit} className="form">
+          <h2>{editingId ? "Editar Associação" : "Nova Associação"}</h2>
+          <input
+            type="text"
+            value={nome_A}
+            onChange={(e) => setNome_A(e.target.value)}
+            placeholder="Nome"
+            required
+          />
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
+          />
+          <input
+            type="text"
+            value={telefone}
+            onChange={(e) => setTelefone(e.target.value)}
+            placeholder="Telefone"
+          />
+          <textarea
+            value={texto_A}
+            onChange={(e) => setTexto_A(e.target.value)}
+            placeholder="Texto descritivo"
+            rows="3"
+          />
+          <input
+            type="file"
+            ref={fileInputRef}                // <-- adiciona a ref aqui
+            onChange={(e) => setMedia(e.target.files[0])}
+            accept="image/*"
+          />
+          <button className="criar-editar-button" type="submit">
+            {editingId ? "Atualizar" : "Criar"}
           </button>
-        )}
-      </form>
-
-      <div className="list">
-        <h2>Associações Cadastradas</h2>
-        {associations.map((assoc) => (
-          <div key={assoc.id} className="item">
-            {assoc.media && (
-              <img
-                src={`http://localhost:3000/uploads/${assoc.media.file}`}
-                alt=""
-                className="thumb"
-              />
-            )}
-            <h3>{assoc.nome_A}</h3>
-            <p>{assoc.email}</p>
-            <p>{assoc.telefone}</p>
-            <p>{assoc.texto_A}</p>
-            
-            <button className="criar-editar-button" onClick={() => handleEdit(assoc)}>Editar</button>
-            <button
-              onClick={() => handleDelete(assoc.id)}
-              className="delete-btn"
-            >
-              Apagar
+          {editingId && (
+            <button type="button" className="delete-btn" onClick={resetForm}>
+              Cancelar
             </button>
+          )}
+        </form>
+
+        <div className="list">
+          <h2>Associações Cadastradas</h2>
+          <div className="filtros">
+            <input
+              type="text"
+              placeholder="Pesquisar por nome"
+              value={filtroNome}
+              onChange={(e) => setFiltroNome(e.target.value)}
+            />
           </div>
-        ))}
+          {associationsFiltradas.length === 0 ? (
+            <p>Nenhuma associação encontrada.</p>
+          ) : (
+            associationsFiltradas.map((assoc) => (
+              <div key={assoc.id} className="item">
+                {assoc.media && (
+                  <img
+                    src={`http://localhost:3000/uploads/${assoc.media.file}`}
+                    alt=""
+                    className="thumb"
+                  />
+                )}
+                <h3>{assoc.nome_A}</h3>
+                <p>{assoc.email}</p>
+                <p>{assoc.telefone}</p>
+                <p>{assoc.texto_A}</p>
+
+                <button className="criar-editar-button" onClick={() => handleEdit(assoc)}>Editar</button>
+                <button
+                  onClick={() => handleDelete(assoc.id)}
+                  className="delete-btn"
+                >
+                  Apagar
+                </button>
+              </div>
+            ))
+          )}
+        </div>
       </div>
-    </div>
     </div>
   );
 }

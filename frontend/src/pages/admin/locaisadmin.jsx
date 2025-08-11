@@ -10,9 +10,12 @@ const AdminLocais = () => {
   const [media, setMedia] = useState(null);
   const [editingId, setEditingId] = useState(null);
 
-  const API_URL = "http://localhost:3000/api/locais";
-  const token = localStorage.getItem('token');
+  // Estados para filtros
+  const [filtroNome, setFiltroNome] = useState("");
+  const [filtroTipo, setFiltroTipo] = useState("");
 
+  const API_URL = "http://localhost:3000/api/locais";
+  const token = localStorage.getItem("token");
 
   const fetchLocais = async () => {
     const res = await fetch(API_URL);
@@ -37,17 +40,17 @@ const AdminLocais = () => {
       await fetch(`${API_URL}/${editingId}`, {
         method: "PATCH",
         body: formData,
-         headers: {
-            'Authorization': `Bearer ${token}`
-          }
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
     } else {
       await fetch(API_URL, {
         method: "POST",
         body: formData,
-         headers: {
-            'Authorization': `Bearer ${token}`
-          }
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
     }
 
@@ -58,9 +61,9 @@ const AdminLocais = () => {
   const handleDelete = async (id) => {
     await fetch(`${API_URL}/${id}`, {
       method: "DELETE",
-       headers: {
-            'Authorization': `Bearer ${token}`
-          }
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
     fetchLocais();
   };
@@ -79,6 +82,20 @@ const AdminLocais = () => {
     setMedia(null);
     setEditingId(null);
   };
+
+  // Filtro aplicado à lista locais:
+  const locaisFiltrados = locais.filter((local) => {
+    // filtro por nome (texto)
+    const nomeMatch = local.nome_L
+      .toLowerCase()
+      .includes(filtroNome.toLowerCase());
+
+    // filtro por tipo (se filtroTipo estiver vazio, ignora filtro)
+    const tipoMatch =
+      filtroTipo === "" || local.tipo_L.toLowerCase() === filtroTipo.toLowerCase();
+
+    return nomeMatch && tipoMatch;
+  });
 
   return (
     <div>
@@ -102,10 +119,7 @@ const AdminLocais = () => {
             placeholder="Descrição"
             rows="3"
           />
-          <select
-            value={tipo_L}
-            onChange={(e) => setTipo_L(e.target.value)}
-          >
+          <select value={tipo_L} onChange={(e) => setTipo_L(e.target.value)}>
             <option value="">Selecione um tipo</option>
             <option value="patrimonio">Patrimônio</option>
             <option value="estabelecimento">Estabelecimento</option>
@@ -128,35 +142,62 @@ const AdminLocais = () => {
           )}
         </form>
 
+        {/* FILTROS */}
+        <div className="filtros" style={{ margin: "20px 0" }}>
+          <input
+            type="text"
+            placeholder="Pesquisar por nome"
+            value={filtroNome}
+            onChange={(e) => setFiltroNome(e.target.value)}
+            style={{ marginRight: "10px" }}
+          />
+
+          <select
+            value={filtroTipo}
+            onChange={(e) => setFiltroTipo(e.target.value)}
+          >
+            <option value="">Todos os tipos</option>
+            <option value="patrimonio">Patrimônio</option>
+            <option value="estabelecimento">Estabelecimento</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+
         <div className="list">
           <h2>Locais Cadastrados</h2>
-          {locais.map((local) => (
-            <div key={local.id} className="item">
-              {local.media && local.media[0] && (
-                <img
-                  src={`http://localhost:3000/uploads/${local.media[0].file}`}
-                  alt="local"
-                  className="thumb"
-                />
-              )}
-              <h3>{local.nome_L}</h3>
-              <p><strong>Tipo:</strong> {local.tipo_L}</p>
-              <p>{local.texto_L}</p>
+          {locaisFiltrados.length === 0 ? (
+            <p>Nenhum local encontrado.</p>
+          ) : (
+            locaisFiltrados.map((local) => (
+              <div key={local.id} className="item">
+                {local.media && local.media[0] && (
+                  <img
+                    src={`http://localhost:3000/uploads/${local.media[0].file}`}
+                    alt="local"
+                    className="thumb"
+                  />
+                )}
+                <h3>{local.nome_L}</h3>
+                <p>
+                  <strong>Tipo:</strong> {local.tipo_L}
+                </p>
+                <p>{local.texto_L}</p>
 
-              <button
-                className="criar-editar-button"
-                onClick={() => handleEdit(local)}
-              >
-                Editar
-              </button>
-              <button
-                onClick={() => handleDelete(local.id)}
-                className="delete-btn"
-              >
-                Apagar
-              </button>
-            </div>
-          ))}
+                <button
+                  className="criar-editar-button"
+                  onClick={() => handleEdit(local)}
+                >
+                  Editar
+                </button>
+                <button
+                  onClick={() => handleDelete(local.id)}
+                  className="delete-btn"
+                >
+                  Apagar
+                </button>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
@@ -164,3 +205,4 @@ const AdminLocais = () => {
 };
 
 export default AdminLocais;
+

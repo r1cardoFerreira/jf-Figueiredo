@@ -6,6 +6,7 @@ const AdminGaleria = () => {
   const [galeria, setGaleria] = useState([]);
   const [label_G, setLabel_G] = useState("");
   const [mediaFiles, setMediaFiles] = useState([]);
+  const [filtroLabel, setFiltroLabel] = useState("");  // filtro novo
 
   const API_URL = "http://localhost:3000/api/galeria";
   const token = localStorage.getItem('token');
@@ -37,9 +38,9 @@ const AdminGaleria = () => {
       await fetch(API_URL, {
         method: "POST",
         body: formData,
-         headers: {
-            'Authorization': `Bearer ${token}`
-          }
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
 
       setLabel_G("");
@@ -54,15 +55,20 @@ const AdminGaleria = () => {
     try {
       await fetch(`${API_URL}/${id}`, {
         method: "DELETE",
-         headers: {
-            'Authorization': `Bearer ${token}`
-          }
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
       fetchGaleria();
     } catch (error) {
       console.error("Erro ao apagar galeria:", error);
     }
   };
+
+  
+  const galeriaFiltrada = galeria.filter(item =>
+    item.label_G.toLowerCase().includes(filtroLabel.toLowerCase())
+  );
 
   return (
     <div>
@@ -88,29 +94,43 @@ const AdminGaleria = () => {
           <button type="submit">Enviar</button>
         </form>
 
+        
+
         <div className="galeria-list">
           <h2>Galeria</h2>
-          {galeria.map((item) => (
-            <div key={item.id} className="galeria-item">
-              <h3>{item.label_G}</h3>
-              <div className="thumbs">
-                {item.media.map((img) => (
-                  <img
-                    key={img.id}
-                    src={`http://localhost:3000/uploads/${img.file}`}
-                    alt={img.alt || ""}
-                    className="thumb"
-                  />
-                ))}
+          <div className="filtros">
+          <input
+            type="text"
+            placeholder="Pesquisar por título"
+            value={filtroLabel}
+            onChange={(e) => setFiltroLabel(e.target.value)}
+          />
+        </div>
+          {galeriaFiltrada.length === 0 ? (
+            <p>Nenhum item encontrado.</p>
+          ) : (
+            galeriaFiltrada.map((item) => (
+              <div key={item.id} className="galeria-item">
+                <h3>{item.label_G}</h3>
+                <div className="thumbs">
+                  {item.media.map((img) => (
+                    <img
+                      key={img.id}
+                      src={`http://localhost:3000/uploads/${img.file}`}
+                      alt={img.alt || ""}
+                      className="thumb"
+                    />
+                  ))}
+                </div>
+                <button
+                  onClick={() => handleDelete(item.id)}
+                  className="delete-btn"
+                >
+                  Apagar
+                </button>
               </div>
-              <button
-                onClick={() => handleDelete(item.id)}
-                className="delete-btn"
-              >
-                Apagar
-              </button>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </div>

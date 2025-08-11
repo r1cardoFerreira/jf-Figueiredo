@@ -10,5 +10,6 @@ router.post('/',authenticate, upload.single('media'), associacoesController.crea
 router.get('/', associacoesController.getAllAssociacao);
 router.get('/:id', associacoesController.getAssociacaoId);
 router.delete('/:id',authenticate, associacoesController.deleteAssociacaoId);
+router.patch('/:id',authenticate, upload.array('media', 10), associacoesController.updateAssociacao)
 
 module.exports = router;

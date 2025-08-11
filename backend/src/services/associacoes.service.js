@@ -42,6 +42,21 @@ async function deleteAssociacaoId(id) {
     return resposta;
 }
 
+async function updateAssociacao(dadosAtualizados, id, files) {
+    
+    const assocAtualizado = await prisma.associacoes.update({
+        where: { id },
+        data: dadosAtualizados
+    });
+    
+    if (files && files.length > 0) {
+    const dadosID = { id: id, tipo: 'associacao' };
+    await uploads.createMedia(files, dadosID); 
+    }
+    
+    return assocAtualizado;
+}
 
 
-module.exports = {createAssociacao, getAllAssociacao, getAssociacaoId, deleteAssociacaoId};
+
+module.exports = {createAssociacao, getAllAssociacao, getAssociacaoId, deleteAssociacaoId, updateAssociacao};
