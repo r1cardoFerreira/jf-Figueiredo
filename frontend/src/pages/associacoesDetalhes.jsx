@@ -60,11 +60,10 @@ const AssociacaoDetalhes = () => {
       <strong>Email:</strong> {associacao.email || "Não disponível"}
     </p>
     <p>
-      <strong>Redes Sociais:</strong> {associacao.telefone || "Não disponível"}
+      <strong>Redes Sociais | Telefone:</strong> {associacao.telefone || "Não disponível"}
     </p>
   </div>
 </div>
-      <Footer />
     </div>
   );
 };

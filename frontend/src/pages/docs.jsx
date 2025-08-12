@@ -107,7 +107,6 @@ const Documentos = () => {
           ))
         )}
       </div>
-      <Footer />
     </div>
   );
 };
