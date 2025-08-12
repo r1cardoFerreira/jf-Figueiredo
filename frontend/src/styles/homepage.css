@@ -47,11 +47,15 @@ html{
 }
 
 .menu-icon {
-  font-size: 32px;
+  height: 2em;
   color: #0026b3;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
-
+.img-visible {
+  display: block;       /* garante que apareça */
+  max-width: 100%;      /* redimensiona para caber no container */
+  height: 2em;   /* mantém a proporção */
+}
 .menu-label {
   font-size: 24px;
   text-align: center;
