@@ -91,7 +91,7 @@ const Documentos = () => {
                                 rel="noopener noreferrer"
                                 className="btn-download"
                               >
-                                Baixar
+                                Download
                               </a>
                             </div>
                           );
