@@ -4,17 +4,20 @@ const cors = require('cors');
 const path = require('path');
 const multer = require('multer');
 require('./src/utils/cronjobs'); 
-
-
-
-
-
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const app = express();
+
+
+
+if (!process.env.JWT_SECRET) {
+    console.error('⚠️ JWT_SECRET não definido. O servidor vai encerrar.');
+    process.exit(1);
+}
+
+
 // Ficheiros estáticos de uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 
 // const comentarioRoutes = require('./routes/comentario.route');
 const eventoRoutes = require('./src/routes/eventos.route');

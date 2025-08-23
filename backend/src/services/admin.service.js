@@ -8,7 +8,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 async function login(password) {
     const admin = await prisma.admin.findFirst();
-    if (!admin) throw new Error('Administrador não encontrado');
+    if (!admin) throw new Error('Credenciais inválidas');
 
     const isMatch = await bcrypt.compare(password, admin.password);
     if (!isMatch) throw new Error('Credenciais inválidas');
@@ -16,7 +16,7 @@ async function login(password) {
     const token = jwt.sign(
         { id: admin.id },
         JWT_SECRET,
-        { expiresIn: '2h' }
+        { expiresIn: '1h' }
     );
 
     return {

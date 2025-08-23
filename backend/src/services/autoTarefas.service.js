@@ -68,7 +68,7 @@ async function delDocumentos()
                 },
                 {
                     AND: [
-                        { tipo_D: { in: ['regulamentos', 'relatorios_de_contas','outro'] } },
+                        { tipo_D: { in: ['relatorios_de_contas','outro'] } },
                         { data_CD: { lt: seisMeses } }
                     ]
                 }
