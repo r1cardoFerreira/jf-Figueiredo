@@ -5,8 +5,10 @@ html{
  max-width: 100%;
  width: 100%;
  overflow: hidden;
- height: 500px;
+ height: 800px;
  position: relative;
+ object-fit: cover; /* centraliza e preenche */
+  object-position: top; 
 }
 .img-front img {
   width: 100%;

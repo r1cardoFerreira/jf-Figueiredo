@@ -39,7 +39,7 @@ return(
 <div>
     <Navbar/>
     <div className="img-front">
-        <img src={imgCasa} alt="Igreja de Figueiredo" />
+        <img src={imgIgreja} alt="Igreja de Figueiredo" />
     </div>
 <div className="menu-container">
         <div className="menu-item">

@@ -26,7 +26,6 @@ const Heraldica = () =>{
                 </p>
             </div>
         </div>
-        <Footer/>
         </div>
     )
 
