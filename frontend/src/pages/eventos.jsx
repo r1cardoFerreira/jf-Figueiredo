@@ -18,8 +18,8 @@ const Eventos = () => {
       setLoading(true);
       try {
         const url = verTodos
-          ? "http://jf-figueiredo.com/api/eventos/"
-          : "http://jf-figueiredo.com/api/eventos/?limit=6";
+          ? "http://api.jf-figueiredo.com/api/eventos/"
+          : "http://api.jf-figueiredo.com/api/eventos/?limit=6";
 
         const resposta = await fetch(url);
         const dados = await resposta.json();
@@ -45,7 +45,7 @@ const Eventos = () => {
           <Link key={evento.id} to={`/eventosdetalhes/${evento.id}`}>
             {evento.media && evento.media.length > 0 && isImageFile(evento.media[0].file) && (
               <img
-                src={`http://jf-figueiredo.com/uploads/${evento.media[0].file}`}
+                src={`http://api.jf-figueiredo.com/uploads/${evento.media[0].file}`}
                 alt={`Imagem do evento`}
               />
             )}

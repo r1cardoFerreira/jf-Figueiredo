@@ -12,7 +12,7 @@ const Login = () => {
     setError("");
 
     try {
-      const response = await fetch("http://jf-figueiredo.com/api/admin/login", {
+      const response = await fetch("http://api.jf-figueiredo.com/api/admin/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

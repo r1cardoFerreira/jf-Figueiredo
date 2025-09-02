@@ -8,7 +8,7 @@ const AdminGaleria = () => {
   const [mediaFiles, setMediaFiles] = useState([])
   const [filtroLabel, setFiltroLabel] = useState("")
 
-  const API_URL = "http://jf-figueiredo.com/api/galeria"
+  const API_URL = "http://api.jf-figueiredo.com/api/galeria"
   const token = localStorage.getItem("token")
 
   const fetchGaleria = async () => {
@@ -142,7 +142,7 @@ const AdminGaleria = () => {
                   {item.media.map((img) => (
                     <img
                       key={img.id}
-                      src={`http://jf-figueiredo.com/uploads/${img.file}`}
+                      src={`http://api.jf-figueiredo.com/uploads/${img.file}`}
                       alt={img.alt || `Imagem da galeria ${item.label_G}`}
                       className="admin-gallery__item"
                     />

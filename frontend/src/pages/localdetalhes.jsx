@@ -9,7 +9,7 @@ const LocalDetalhes = () => {
     const [local, setLocal] = useState(null);
 
      useEffect(() => {
-        fetch(`http://jf-figueiredo.com/api/locais/${id}`)
+        fetch(`http://api.jf-figueiredo.com/api/locais/${id}`)
           .then((res) => {
             if (!res.ok) throw new Error("Erro na resposta da API");
             return res.json();
@@ -29,7 +29,7 @@ const LocalDetalhes = () => {
             <Navbar/>
             <div className="local-container">
                 <img
-                  src={`http://jf-figueiredo.com/uploads/${local.media[0].file}`}
+                  src={`http://api.jf-figueiredo.com/uploads/${local.media[0].file}`}
                   alt={`Imagem de ${local.nome_L}`}
                 />
                 <div className="local-titulo-container">

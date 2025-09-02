@@ -10,7 +10,7 @@ const Documentos = () => {
   const [agrupadosPorTipo, setAgrupadosPorTipo] = useState({});
   const [gruposAbertos, setGruposAbertos] = useState({}); 
   useEffect(() => {
-    fetch("http://jf-figueiredo.com/api/documentos")
+    fetch("http://api.jf-figueiredo.com/api/documentos")
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao buscar documentos");
         return res.json();
@@ -85,7 +85,7 @@ const Documentos = () => {
                             <div key={file.id}>
                               <span className="NomeOriginal">{nomeOriginal}</span>
                               <a
-                                href={`http://jf-figueiredo.com/uploads/${file.file}`}
+                                href={`http://api.jf-figueiredo.com/uploads/${file.file}`}
                                 download
                                 target="_blank"
                                 rel="noopener noreferrer"

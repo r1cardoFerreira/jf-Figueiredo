@@ -15,7 +15,7 @@ const AdminLocais = () => {
   const [filtroNome, setFiltroNome] = useState("")
   const [filtroTipo, setFiltroTipo] = useState("")
 
-  const API_URL = "http://jf-figueiredo.com/api/locais"
+  const API_URL = "http://api.jf-figueiredo.com/api/locais"
   const token = localStorage.getItem("token")
 
   const fetchLocais = async () => {
@@ -202,7 +202,7 @@ const AdminLocais = () => {
               <div key={local.id} className="admin-item">
                 {local.media && local.media[0] && (
                   <img
-                    src={`http://jf-figueiredo.com/uploads/${local.media[0].file}` || "/placeholder.svg"}
+                    src={`http://api.jf-figueiredo.com/uploads/${local.media[0].file}` || "/placeholder.svg"}
                     alt="Local"
                     className="admin-thumbnail"
                   />

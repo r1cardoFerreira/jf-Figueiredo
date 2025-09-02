@@ -7,7 +7,7 @@ const Galeria = () => {
   const [label_G, setLabel_G] = useState("");
   const [mediaFiles, setMediaFiles] = useState([]);
 
-  const API_URL = "http://jf-figueiredo.com/api/galeria";
+  const API_URL = "http://api.jf-figueiredo.com/api/galeria";
 
   const fetchGaleria = async () => {
     try {
@@ -34,7 +34,7 @@ const Galeria = () => {
             {item.media.map((img) => (
               <img
                 key={img.id}
-                src={`http://jf-figueiredo.com/uploads/${img.file}`}
+                src={`http://api.jf-figueiredo.com/uploads/${img.file}`}
                 alt={img.alt || ""}
                 className="thumb"
               />

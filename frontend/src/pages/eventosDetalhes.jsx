@@ -9,7 +9,7 @@ const EventosDetalhes = () => {
     const { id } = useParams();
     const [evento, setEvento] = useState(null);
     useEffect(() => {
-        fetch(`http://jf-figueiredo.com/api/eventos/${id}`)
+        fetch(`http://api.jf-figueiredo.com/api/eventos/${id}`)
           .then((res) => {
             if (!res.ok) throw new Error("Erro na resposta da API");
             return res.json();
@@ -29,7 +29,7 @@ const EventosDetalhes = () => {
             <Navbar/>
             <div className="local-container">
                 <img
-                  src={`http://jf-figueiredo.com/uploads/${evento.media[0].file}`}
+                  src={`http://api.jf-figueiredo.com/uploads/${evento.media[0].file}`}
                   alt={`Imagem de ${evento.titulo_E}`}
                 />
                 <div className="local-titulo-container">

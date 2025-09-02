@@ -14,7 +14,7 @@ function AdminAssociacoes() {
   const [filtroNome, setFiltroNome] = useState("")
 
   const fileInputRef = useRef(null)
-  const API_URL = "http://jf-figueiredo.com/api/associacoes"
+  const API_URL = "http://api.jf-figueiredo.com/api/associacoes"
   const token = localStorage.getItem("token")
 
   const fetchAssociations = async () => {
@@ -211,7 +211,7 @@ function AdminAssociacoes() {
 
                 {assoc.media && (
                   <img
-                    src={`http://jf-figueiredo.com/uploads/${assoc.media.file}`}
+                    src={`http://api.jf-figueiredo.com/uploads/${assoc.media.file}`}
                     alt={`Logo da ${assoc.nome_A}`}
                     className="admin-thumbnail"
                   />

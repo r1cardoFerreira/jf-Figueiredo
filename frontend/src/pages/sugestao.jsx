@@ -20,7 +20,7 @@ const Sugestao = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://jf-figueiredo.com/api/sugestoes_reclamacoes/", {
+      const response = await fetch("http://api.jf-figueiredo.com/api/sugestoes_reclamacoes/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
