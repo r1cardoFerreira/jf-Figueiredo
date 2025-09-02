@@ -9,7 +9,7 @@ const AssociacaoDetalhes = () => {
   const [associacao, setAssociacao] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/associacoes/${id}`)
+    fetch(`http://jf-figueiredo.com/api/associacoes/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error("Erro na resposta da API");
         return res.json();
@@ -33,8 +33,8 @@ const AssociacaoDetalhes = () => {
       <img
         src={
           associacao.media.file
-            ? `http://localhost:3000/uploads/${associacao.media.file}`
-            : `http://localhost:3000/uploads/${associacao.media}`
+            ? `http://jf-figueiredo.com/uploads/${associacao.media.file}`
+            : `http://jf-figueiredo.com/uploads/${associacao.media}`
         }
         alt={`Emblema de ${associacao.nome_A}`}
         className="detalhes-imagem"

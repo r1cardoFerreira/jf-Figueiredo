@@ -8,7 +8,7 @@ const Associacoes = () => {
   const [associacoes, setAssociacoes] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/associacoes")
+    fetch("http://jf-figueiredo.com/api/associacoes")
       .then((response) => response.json())
       .then((data) => setAssociacoes(data))
       .catch((error) => console.error("Erro ao buscar associações:", error));
@@ -27,7 +27,7 @@ const Associacoes = () => {
             <div className="associacao-card">
               {assoc.media ? (
                 <img
-                  src={`http://localhost:3000/uploads/${
+                  src={`http:jf-figueiredo.com/uploads/${
                     assoc.media.file || assoc.media
                   }`}
                   alt={`Emblema de ${assoc.nome_A}`}

@@ -19,7 +19,7 @@ const Locais = () => {
     const buscarLocais = async () => {
       setLoading(true);
       try {
-        let url = "http://localhost:3000/api/locais/tipo/";
+        let url = "http://jf-figueiredo.com/api/locais/tipo/";
         if (tipoSelecionado !== "todos") {
           url += `?tipo=${tipoSelecionado}`;
         }
@@ -66,7 +66,7 @@ const Locais = () => {
       <div key={local.id} className="card-local">
         {local.media && local.media.length > 0 && isImageFile(local.media[0].file) && (
           <img
-            src={`http://localhost:3000/uploads/${local.media[0].file}`}
+            src={`http://jf-figueiredo.com/uploads/${local.media[0].file}`}
             alt={`Imagem do local`}
             className="imagem-local"
           />
