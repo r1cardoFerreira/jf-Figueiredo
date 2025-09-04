@@ -3,6 +3,7 @@ import '../styles/footer.css';
 
 const Footer = () => {
     return(
+        <div>
         <div className="footer-container">
             <div className="footer-item">
                 <p className="footer-title">Freguesia de Figueiredo</p>
@@ -38,6 +39,10 @@ const Footer = () => {
                 />
             </div>
             
+        </div>
+            <div className="creditsp">
+                <p>Developed by LocalCode</p>
+            </div>
         </div>
     );
 };

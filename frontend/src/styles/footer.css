@@ -31,6 +31,16 @@
   margin: 24px 0px;
 }
 
+.creditsp , .creditsp p{
+  margin: 0;
+  text-align: center;
+  width: 100%;
+  color: #eeeeee70;
+  background-color: #121ca7;
+  padding-bottom: 3px;
+  font-size: xx-small;
+}
+
 /* RESPONSIVO: telas menores que 768px (ex: tablets e telemóveis) */
 @media (max-width: 768px) {
   .footer-container {
