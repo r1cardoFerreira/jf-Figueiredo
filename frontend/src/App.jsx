@@ -45,7 +45,6 @@ function App() {
         <Route path="/galeriaadmin" element={<AdminGaleria/>}/>
         <Route path="/locaisadmin" element={<AdminLocais/>}/>
         <Route path="/docsadmin" element={<AdminDocumentos/>}/>
-        <Route path="/locais" element={<Locais/>}/>
         <Route path="/eventos" element={<Eventos/>}/> 
         <Route path="/eventosdetalhes/:id" element={<EventosDetalhes/>}/>
         <Route path ="/galeria" element={<Galeria/>}/>

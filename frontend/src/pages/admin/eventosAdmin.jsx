@@ -18,7 +18,7 @@ const AdminEventos = () => {
   const [dataInicial, setDataInicial] = useState("")
   const [dataFinal, setDataFinal] = useState("")
 
-  const API_URL = "http://api.jf-figueiredo.com/api/eventos"
+  const API_URL = "https://api.jf-figueiredo.com/api/eventos"
   const token = localStorage.getItem("token")
   const fileInputRef = useRef(null)
 
@@ -299,7 +299,7 @@ const AdminEventos = () => {
                     {evento.media.map((m, i) => (
                       <img
                         key={i}
-                        src={`http://api.jf-figueiredo.com/uploads/${m.file}`}
+                        src={`https://api.jf-figueiredo.com/uploads/${m.file}`}
                         alt={`Imagem ${i + 1} do evento`}
                         className="admin-gallery__item"
                       />

@@ -8,7 +8,7 @@ const Associacoes = () => {
   const [associacoes, setAssociacoes] = useState([]);
 
   useEffect(() => {
-    fetch("http://api.jf-figueiredo.com/api/associacoes")
+    fetch("https://api.jf-figueiredo.com/api/associacoes")
       .then((response) => response.json())
       .then((data) => setAssociacoes(data))
       .catch((error) => console.error("Erro ao buscar associações:", error));

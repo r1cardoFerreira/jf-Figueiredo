@@ -9,7 +9,7 @@ const EventosDetalhes = () => {
     const { id } = useParams();
     const [evento, setEvento] = useState(null);
     useEffect(() => {
-        fetch(`http://api.jf-figueiredo.com/api/eventos/${id}`)
+        fetch(`https://api.jf-figueiredo.com/api/eventos/${id}`)
           .then((res) => {
             if (!res.ok) throw new Error("Erro na resposta da API");
             return res.json();

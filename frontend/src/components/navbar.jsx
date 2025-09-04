@@ -39,7 +39,7 @@ const Navbar = () => {
             <div className="dropdown">
               <Link to="/historia">História</Link>
               <Link to="/heraldica">Heráldica</Link>
-              <a href="/visitar">Visitar</a>
+              <Link to="/visitar">Visitar</Link>
               <Link to="/galeria">Galeria</Link>
               <Link to="/associacoes">Associativismo</Link>
             </div>
@@ -53,8 +53,8 @@ const Navbar = () => {
           Autarquia ▾
           {openDropdown === 'autarquia' && (
             <div className="dropdown">
-              <a href="/documentos">Documentos</a>
-              <a href="/toponimia">Toponímia</a>
+              <Link to="/documentos">Documentos</Link>
+              <Link to="/toponimia">Toponímia</Link>
             </div>
           )}
         </div>

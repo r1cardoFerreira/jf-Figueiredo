@@ -10,7 +10,7 @@ const Documentos = () => {
   const [agrupadosPorTipo, setAgrupadosPorTipo] = useState({});
   const [gruposAbertos, setGruposAbertos] = useState({}); 
   useEffect(() => {
-    fetch("http://api.jf-figueiredo.com/api/documentos")
+    fetch("https://api.jf-figueiredo.com/api/documentos")
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao buscar documentos");
         return res.json();

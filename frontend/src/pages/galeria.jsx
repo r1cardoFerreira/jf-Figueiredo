@@ -7,7 +7,7 @@ const Galeria = () => {
   const [label_G, setLabel_G] = useState("");
   const [mediaFiles, setMediaFiles] = useState([]);
 
-  const API_URL = "http://api.jf-figueiredo.com/api/galeria";
+  const API_URL = "https://api.jf-figueiredo.com/api/galeria";
 
   const fetchGaleria = async () => {
     try {

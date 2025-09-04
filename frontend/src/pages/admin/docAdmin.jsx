@@ -10,7 +10,7 @@ const AdminDocumentos = () => {
   const [dataFinal, setDataFinal] = useState("")
   const [filtroTipo, setFiltroTipo] = useState("todos")
 
-  const API_URL = "http://api.jf-figueiredo.com/api/documentos"
+  const API_URL = "https://api.jf-figueiredo.com/api/documentos"
   const token = localStorage.getItem("token")
 
   const tiposDocumento = [
@@ -192,7 +192,7 @@ const AdminDocumentos = () => {
                     {doc.media.map((file) => {
                       const ext = file.file.split(".").pop().toLowerCase()
                       const isImage = ["jpg", "jpeg", "png", "gif", "webp"].includes(ext)
-                      const fileUrl = `http://api.jf-figueiredo.com/uploads/${file.file}`
+                      const fileUrl = `https://api.jf-figueiredo.com/uploads/${file.file}`
 
                       return isImage ? (
                         <img
