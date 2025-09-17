@@ -52,7 +52,7 @@ const Eventos = () => {
             <div className="evento-card-content">
               <p className="evento-data">{new Date(evento.data_E).toLocaleDateString()}</p>
               <h3 className="evento-titulo">{evento.titulo_E}</h3>
-              <p className="evento-categoria">{evento.categoria || "Desporto"}</p>
+              <p className="evento-categoria">{evento.categoria}</p>
             </div>
           </Link>
         </div>

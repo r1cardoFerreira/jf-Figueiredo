@@ -1,0 +1,61 @@
+/* pagina.css */
+
+/* Layout geral */
+.galeria-list {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens quebrem linha */
+  gap: 40px; /* Espaçamento entre os itens */
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+/* Cada item da galeria */
+.galeria-item {
+  width: calc(33.33% - 40px); /* 3 itens por linha */
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.galeria-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Título de cada item */
+.galeria-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Container de imagens */
+.thumbs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Imagem */
+.thumb {
+  width: 80%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .galeria-item {
+    width: calc(50% - 20px); /* 2 por linha */
+  }
+}
+
+@media (max-width: 768px) {
+  .galeria-item {
+    width: 100%; /* 1 por linha no telemóvel */
+  }
+}

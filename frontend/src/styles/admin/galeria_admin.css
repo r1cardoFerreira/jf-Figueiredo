@@ -10,7 +10,7 @@
 }
 
 input[type="text"],
-input[type="file"]{
+input[type="file"] {
   display: block;
   width: 100%;
   padding: 10px;
@@ -32,8 +32,9 @@ button {
 
 .galeria-list {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap; /* Permite quebrar linha */
   gap: 20px;
+  justify-content: flex-start;
 }
 
 .galeria-item {
@@ -41,6 +42,8 @@ button {
   border: 1px solid #ddd;
   padding: 15px;
   border-radius: 8px;
+  width: calc(33.333% - 20px); /* 3 itens por linha */
+  box-sizing: border-box;
 }
 
 .thumbs {

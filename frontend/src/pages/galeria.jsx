@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/navbar";
-import "../styles/admin/galeria_admin.css";
+import "../styles/galeria.css";
 
 const Galeria = () => {
   const [galeria, setGaleria] = useState([]);
@@ -25,8 +25,9 @@ const Galeria = () => {
   }, []);
 
   return (
+    <div>
+    <Navbar />
     <div className="galeria-list">
-      <Navbar />
       {galeria.map((item) => (
         <div key={item.id} className="galeria-item">
           <h3>{item.label_G}</h3>
@@ -42,6 +43,7 @@ const Galeria = () => {
           </div>
         </div>
       ))}
+    </div>
     </div>
   );
 };
